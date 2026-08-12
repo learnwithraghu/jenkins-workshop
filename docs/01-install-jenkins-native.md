@@ -69,9 +69,15 @@ sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 The workshop demos run simple Python scripts on the Jenkins host:
 
 ```bash
+# Amazon Linux / RHEL
 sudo dnf install -y python3 python3-pip
+
+# Debian / Ubuntu (also install venv — required for workshop pipelines)
+# sudo apt-get update && sudo apt-get install -y python3 python3-pip python3-venv
+
 python3 --version
 pip3 --version
+python3 -m venv --help >/dev/null && echo "venv OK"
 ```
 
 ## 9. Verify Jenkins can run Python
@@ -110,6 +116,14 @@ sudo journalctl -u jenkins -e
 ```
 
 **Permission denied running builds:** Jenkins runs as the `jenkins` user. Host-installed `python3` at `/usr/bin/python3` is accessible to all users by default.
+
+**`externally-managed-environment` / `ensurepip is not available`:** On Debian/Ubuntu, install the venv package, then rebuild:
+
+```bash
+sudo apt-get install -y python3-venv
+```
+
+Workshop pipelines create a `.venv` instead of installing packages system-wide.
 
 ## Next step
 
