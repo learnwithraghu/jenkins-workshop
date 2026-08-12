@@ -4,21 +4,17 @@ pipeline {
     stages {
         stage('Install') {
             steps {
-                sh '''
-                    cd demos/07-post-build-artifacts
-                    python3 -m venv .venv
-                    .venv/bin/pip install -r requirements.txt
-                '''
+                sh 'cd demos/07-post-build-artifacts && pip3 install --break-system-packages -r requirements.txt'
             }
         }
         stage('Test') {
             steps {
-                sh 'cd demos/07-post-build-artifacts && .venv/bin/python -m pytest test_generate_report.py -v --junitxml=test-results.xml'
+                sh 'cd demos/07-post-build-artifacts && python3 -m pytest test_generate_report.py -v --junitxml=test-results.xml'
             }
         }
         stage('Generate Report') {
             steps {
-                sh 'cd demos/07-post-build-artifacts && .venv/bin/python generate_report.py'
+                sh 'cd demos/07-post-build-artifacts && python3 generate_report.py'
             }
         }
     }

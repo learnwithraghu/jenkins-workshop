@@ -4,21 +4,17 @@ pipeline {
     stages {
         stage('Install') {
             steps {
-                sh '''
-                    cd challenges/02-create-staged-pipeline-job
-                    python3 -m venv .venv
-                    .venv/bin/pip install -r requirements.txt
-                '''
+                sh 'cd challenges/02-create-staged-pipeline-job && pip3 install --break-system-packages -r requirements.txt'
             }
         }
         stage('Test') {
             steps {
-                sh 'cd challenges/02-create-staged-pipeline-job && .venv/bin/python -m pytest test_app.py -v'
+                sh 'cd challenges/02-create-staged-pipeline-job && python3 -m pytest test_app.py -v'
             }
         }
         stage('Run') {
             steps {
-                sh 'cd challenges/02-create-staged-pipeline-job && .venv/bin/python app.py'
+                sh 'cd challenges/02-create-staged-pipeline-job && python3 app.py'
             }
         }
     }
