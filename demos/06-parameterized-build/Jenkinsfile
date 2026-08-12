@@ -3,7 +3,7 @@ pipeline {
 
     parameters {
         string(name: 'GREETING_NAME', defaultValue: 'World', description: 'Name to greet')
-        choice(name: 'LANGUAGE', choices: ['en', 'es', 'fr'], description: 'Greeting language (display only)')
+        choice(name: 'LANGUAGE', choices: ['en', 'es', 'fr', 'nigeria'], description: 'Greeting language (display only)')
     }
 
     stages {
