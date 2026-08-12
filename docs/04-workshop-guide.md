@@ -29,7 +29,7 @@ Complete each demo in order. Read the README in each folder for job configuratio
 | 8 | [08-parallel-stages](../demos/08-parallel-stages/README.md) | Parallel stages (`parallel`) | Pipeline | Stage view shows Unit A and Unit B side by side |
 | 9 | [09-docker-ecr](../demos/09-docker-ecr/README.md) | Docker build, image test/scan, push to ECR | Pipeline | Image pushed to ECR; Test Image + Scan stages green |
 | 10 | [10-plugins](../demos/10-plugins/README.md) | Plugin Manager, Timestamper, HTML Publisher | Pipeline | Console has timestamps; build page shows Demo Report |
-| 11 | [11-poll-scm](../demos/11-poll-scm/README.md) | `pollSCM` trigger | Pipeline | Push to main starts a build within ~1 minute |
+| 11 | [11-poll-scm](../demos/11-poll-scm/README.md) | `pollSCM` trigger | Pipeline | Push to main starts a build within ~5 minutes |
 
 ### Show your instructor (demos)
 
