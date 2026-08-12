@@ -22,7 +22,7 @@ Guided examples that show specific Jenkins features. Work through them in order 
 - Builds use **Python 3** on the Jenkins host (`python3` / `/usr/bin/python3`).
 - Demos that need **pytest** install with `pip3 install --break-system-packages` (PEP 668 blocks plain system-wide `pip install` on Debian/Ubuntu). Demo 09 uses stdlib `unittest`.
 - Demos 01–08 do not build containers. **Demo 09** requires Docker, AWS CLI, Trivy, and an EC2 IAM role with ECR access.
-- **Demo 10** requires installing the **Timestamper** and **HTML Publisher** plugins (guided in that README).
+- **Demo 07** requires the **JUnit** plugin (`junit` Pipeline step). **Demo 10** requires **Timestamper** and **HTML Publisher** (guided in that README).
 - Repository URL for all jobs: `https://github.com/learnwithraghu/jenkins-workshop.git`
 
 ## Full workshop path
