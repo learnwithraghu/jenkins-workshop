@@ -13,17 +13,6 @@
 2. **JUnit reports make tests browsable** — `junit` turns pytest XML into the **Test Result** UI, not just console text.
 3. **`post { always }` runs either way** — publishing and archiving should not depend only on a green build; call out why that matters for failed builds.
 
-## Prerequisite: JUnit plugin
-
-The `junit` step comes from the **JUnit** plugin. If the build fails with `No such DSL method 'junit'`, install it:
-
-1. **Manage Jenkins** → **Plugins** → **Available plugins**
-2. Search for **JUnit** and install it (plugin ID: `junit`)
-3. Restart Jenkins if prompted
-4. Rebuild this job
-
-> Tip: Choosing **Install suggested plugins** during the Jenkins setup wizard usually includes JUnit. Minimal installs often skip it.
-
 ## Jenkins job setup
 
 | Setting | Value |
@@ -34,6 +23,19 @@ The `junit` step comes from the **JUnit** plugin. If the build fails with `No su
 | Repository URL | `https://github.com/learnwithraghu/jenkins-workshop.git` |
 | Branch | `*/main` |
 | Script Path | `demos/07-post-build-artifacts/Jenkinsfile` |
+
+## If the build fails: `No such DSL method 'junit'`
+
+The stages may succeed, then the `post { always }` block fails because the **JUnit** plugin is missing. Fix it and rebuild:
+
+1. Open the failed build → **Console Output** and confirm the error mentions `No such DSL method 'junit'`.
+2. Go to **Manage Jenkins** → **Plugins** → **Available plugins**.
+3. Search for **JUnit** (plugin ID: `junit`) and install it.
+4. Restart Jenkins if prompted.
+5. Open the job again and click **Build Now**.
+6. Confirm the build is green, then continue with **What to look for after a successful build** below.
+
+> Tip: Choosing **Install suggested plugins** during the Jenkins setup wizard usually includes JUnit. Minimal installs often skip it.
 
 ## What to look for after a successful build
 
