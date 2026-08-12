@@ -68,13 +68,23 @@ demos/04-pipeline-declarative/Jenkinsfile
 
 ### Option A: Poll SCM (simple, no webhook setup)
 
-In the job configuration, under **Build Triggers**, enable **Poll SCM** and set:
+**Recommended for Demo 08:** the Jenkinsfile already declares:
+
+```groovy
+triggers {
+    pollSCM('* * * * *')
+}
+```
+
+That checks GitHub about **once a minute**. After the job’s first **Build Now**, a push to `main` should start a new build within ~60 seconds (cause: “Started by an SCM change”).
+
+You can also set polling in the UI: job → **Configure** → **Build Triggers** → enable **Poll SCM** with:
 
 ```
-H/5 * * * *
+* * * * *
 ```
 
-Jenkins checks GitHub every 5 minutes for changes.
+For less frequent checks (classroom noise), use `H/5 * * * *` (about every 5 minutes).
 
 ### Option B: GitHub webhook (instant builds)
 

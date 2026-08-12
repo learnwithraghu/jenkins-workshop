@@ -49,7 +49,7 @@ Each demo folder contains small Python code and a README explaining the Jenkins 
 | [05-pipeline-stages](demos/05-pipeline-stages/) | Multiple stages, pytest | Pipeline |
 | [06-parameterized-build](demos/06-parameterized-build/) | Build parameters | Pipeline |
 | [07-post-build-artifacts](demos/07-post-build-artifacts/) | Archive artifacts, JUnit reports | Pipeline |
-| [08-parallel-stages](demos/08-parallel-stages/) | Parallel stages | Pipeline |
+| [08-parallel-stages](demos/08-parallel-stages/) | Parallel stages + pollSCM | Pipeline |
 | [09-docker-ecr](demos/09-docker-ecr/) | Docker build, test/scan, push to ECR | Pipeline |
 | [10-plugins](demos/10-plugins/) | Plugin Manager, Timestamper, HTML Publisher | Pipeline |
 
