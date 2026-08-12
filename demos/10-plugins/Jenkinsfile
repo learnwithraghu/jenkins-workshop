@@ -1,0 +1,43 @@
+pipeline {
+    agent any
+
+    // Requires the Timestamper plugin (install in the Plugin Manager first)
+    options {
+        timestamps()
+    }
+
+    stages {
+        stage('Generate Report') {
+            steps {
+                echo 'Create a simple HTML file the HTML Publisher plugin will serve'
+                sh 'cd demos/10-plugins && python3 generate_report.py'
+            }
+        }
+
+        stage('Publish HTML') {
+            steps {
+                // Requires the HTML Publisher plugin
+                publishHTML(
+                    target: [
+                        allowMissing         : false,
+                        alwaysLinkToLastBuild: true,
+                        keepAll              : true,
+                        reportDir            : 'demos/10-plugins',
+                        reportFiles          : 'report.html',
+                        reportName           : 'Demo Report',
+                        reportTitles         : 'Plugins demo'
+                    ]
+                )
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Open the build page and click "Demo Report" — that link comes from the HTML Publisher plugin.'
+        }
+        failure {
+            echo 'If Publish HTML failed, confirm the HTML Publisher plugin is installed and Jenkins was restarted if required.'
+        }
+    }
+}

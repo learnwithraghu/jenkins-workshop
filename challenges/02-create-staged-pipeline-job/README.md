@@ -4,6 +4,12 @@
 
 Create a **Pipeline** job for a project that runs three stages: Install, Test, and Run. You do not need to edit any code — the `Jenkinsfile` is already complete.
 
+## Instructor talking points
+
+1. **Same skill as Challenge 01, more stages** — students configure Pipeline from SCM; the `Jenkinsfile` already defines Install → Test → Run.
+2. **Stage order matters** — acceptance requires all three stages green, in that order, on the stage view.
+3. **Check understanding** — ask what each stage does and where the Script Path points; reference `solution/Jenkinsfile` if they get stuck.
+
 ## Acceptance criteria
 
 - [ ] Jenkins job named `challenge-02-create-staged-pipeline-job`

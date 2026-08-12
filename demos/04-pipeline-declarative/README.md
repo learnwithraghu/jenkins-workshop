@@ -9,6 +9,12 @@
 
 This demo solves the problems from Demo 02 and Demo 03. The pipeline lives in Git, not in the Jenkins UI.
 
+## Instructor talking points
+
+1. **Pipeline script from SCM** — Jenkins loads the `Jenkinsfile` from Git; the job config only points at the repo and Script Path.
+2. **Build config is now version-controlled** — anyone who clones the repo sees how the project builds; contrast with Demos 01–03.
+3. **Declarative basics** — call out `agent`, `stages`, and `steps` in the Jenkinsfile so students recognize the structure used in the rest of the workshop.
+
 ## Jenkins job setup
 
 | Setting | Value |

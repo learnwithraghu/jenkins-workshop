@@ -6,6 +6,12 @@
 - You get stages and a stage view — a step up from Freestyle
 - But the pipeline script is **still not in the repo** — same problem as Demo 02
 
+## Instructor talking points
+
+1. **Pipeline jobs add stages** — show the stage view after a green build so students see the jump from Freestyle’s flat shell step to a staged pipeline.
+2. **“Pipeline script” still means config in Jenkins** — the Groovy is pasted into the UI; `inline-pipeline.groovy` is only a workshop reference copy.
+3. **Same portability problem as Demo 02** — changing the script in Jenkins does not update Git, and every server needs a manual paste — which is why Demo 04 moves to SCM.
+
 ## Jenkins job setup
 
 | Setting | Value |

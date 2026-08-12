@@ -9,6 +9,12 @@
 
 This demo does **not** use a Jenkinsfile. You configure everything in the Jenkins UI.
 
+## Instructor talking points
+
+1. **Freestyle is the classic Jenkins job** — you configure SCM and build steps entirely in the UI; there is no Jenkinsfile yet.
+2. **Git checkout + shell** — Jenkins pulls the repo, then runs a simple `python3 app.py` build step so students see the end-to-end flow.
+3. **Console output is the first debugging tool** — open the build log and confirm the greeting and Python version printed successfully.
+
 ## Jenkins job setup
 
 | Setting | Value |

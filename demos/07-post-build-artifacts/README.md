@@ -7,6 +7,12 @@
 - Using `post { always { ... } }` to run steps regardless of build result
 - Viewing artifacts and test results in the Jenkins UI
 
+## Instructor talking points
+
+1. **Artifacts outlive the workspace** — `report.txt` / `report.json` are archived so students can download them from the build page after the run.
+2. **JUnit reports make tests browsable** — `junit` turns pytest XML into the **Test Result** UI, not just console text.
+3. **`post { always }` runs either way** — publishing and archiving should not depend only on a green build; call out why that matters for failed builds.
+
 ## Jenkins job setup
 
 | Setting | Value |

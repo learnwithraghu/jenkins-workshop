@@ -7,6 +7,12 @@
 - Accessing parameters via `params.PARAM_NAME`
 - Passing parameters to shell steps as environment variables
 
+## Instructor talking points
+
+1. **Parameters make builds reusable** — one job can greet different names or choose options without editing the Jenkinsfile each time.
+2. **First build discovers parameters** — after the initial run, Jenkins shows **Build with Parameters**; explain why the first build may look different.
+3. **Params flow into the app** — `params.GREETING_NAME` becomes an env var that `greet.py` reads, connecting Pipeline config to runtime behavior.
+
 ## Jenkins job setup
 
 | Setting | Value |

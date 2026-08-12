@@ -1,0 +1,124 @@
+pipeline {
+    agent any
+
+    environment {
+        // --- FILL THESE IN for your AWS account / ECR repo ---
+        AWS_REGION     = 'REPLACE_WITH_AWS_REGION'          // e.g. us-east-1
+        AWS_ACCOUNT_ID = 'REPLACE_WITH_AWS_ACCOUNT_ID'      // e.g. 123456789012
+        ECR_REPO_NAME  = 'REPLACE_WITH_ECR_REPO_NAME'       // e.g. jenkins-workshop-demo
+        // ----------------------------------------------------
+
+        IMAGE_TAG      = "${env.BUILD_NUMBER}"
+        ECR_REGISTRY   = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
+        IMAGE_URI      = "${ECR_REGISTRY}/${ECR_REPO_NAME}:${IMAGE_TAG}"
+        LOCAL_IMAGE    = "jenkins-workshop-demo:${IMAGE_TAG}"
+        APP_DIR        = 'demos/09-docker-ecr'
+    }
+
+    stages {
+        stage('Test App') {
+            steps {
+                echo 'Run unit tests before building the image'
+                sh 'cd ${APP_DIR} && python3 -m unittest test_app.py -v'
+            }
+        }
+
+        stage('Build Image') {
+            steps {
+                echo "Build local image: ${LOCAL_IMAGE}"
+                sh '''
+                    cd ${APP_DIR}
+                    docker build -t ${LOCAL_IMAGE} .
+                '''
+            }
+        }
+
+        stage('Test Image') {
+            steps {
+                echo 'Smoke-test the image: start container, hit /, then stop'
+                sh '''
+                    docker rm -f demo09-smoke >/dev/null 2>&1 || true
+                    docker run -d --name demo09-smoke -p 18080:8080 ${LOCAL_IMAGE}
+                    # Wait briefly for the HTTP server to listen
+                    sleep 2
+                    curl -sf http://127.0.0.1:18080/ | tee /tmp/demo09-smoke.out
+                    grep -q "Hello from Jenkins Docker demo" /tmp/demo09-smoke.out
+                    docker rm -f demo09-smoke
+                '''
+            }
+        }
+
+        stage('Scan Image') {
+            steps {
+                echo 'Scan the local image for OS/package vulnerabilities (Trivy)'
+                sh '''
+                    if ! command -v trivy >/dev/null 2>&1; then
+                        echo "ERROR: trivy not found on the Jenkins agent."
+                        echo "Install Trivy on the EC2 host, then re-run this job."
+                        exit 1
+                    fi
+                    # HIGH/CRITICAL findings fail the build; adjust severity as needed
+                    trivy image --exit-code 1 --severity HIGH,CRITICAL --no-progress ${LOCAL_IMAGE}
+                '''
+            }
+        }
+
+        stage('Login to ECR') {
+            steps {
+                echo 'Authenticate Docker to ECR using the EC2 instance IAM role'
+                sh '''
+                    aws ecr get-login-password --region ${AWS_REGION} \
+                      | docker login --username AWS --password-stdin ${ECR_REGISTRY}
+                '''
+            }
+        }
+
+        stage('Push to ECR') {
+            steps {
+                echo "Tag and push ${IMAGE_URI}"
+                sh '''
+                    docker tag ${LOCAL_IMAGE} ${IMAGE_URI}
+                    docker push ${IMAGE_URI}
+                '''
+            }
+        }
+
+        stage('ECR Scan Status') {
+            steps {
+                echo 'Ask ECR for basic image scan findings (if scanning is enabled on the repo)'
+                sh '''
+                    # Best-effort: start a scan and print a short status. Does not fail the build
+                    # if the repo has scanning disabled — instructors can enable it in the ECR console.
+                    aws ecr start-image-scan \
+                        --region ${AWS_REGION} \
+                        --repository-name ${ECR_REPO_NAME} \
+                        --image-id imageTag=${IMAGE_TAG} || true
+
+                    sleep 5
+
+                    aws ecr describe-image-scan-findings \
+                        --region ${AWS_REGION} \
+                        --repository-name ${ECR_REPO_NAME} \
+                        --image-id imageTag=${IMAGE_TAG} \
+                        --query 'imageScanStatus.status' \
+                        --output text || echo "ECR scan status unavailable (enable Basic scanning on the repo to use this stage)"
+                '''
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Clean up local smoke container and dangling tags if present'
+            sh '''
+                docker rm -f demo09-smoke >/dev/null 2>&1 || true
+            '''
+        }
+        success {
+            echo "Image pushed: ${IMAGE_URI}"
+        }
+        failure {
+            echo 'Pipeline failed — check which stage is red (Test App, Build, Test Image, Scan, Login, or Push).'
+        }
+    }
+}

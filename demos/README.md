@@ -14,12 +14,15 @@ Guided examples that show specific Jenkins features. Work through them in order 
 | 6 | [06-parameterized-build](06-parameterized-build/) | Build parameters | Pipeline | `demos/06-parameterized-build/Jenkinsfile` |
 | 7 | [07-post-build-artifacts](07-post-build-artifacts/) | Archive artifacts, JUnit reports | Pipeline | `demos/07-post-build-artifacts/Jenkinsfile` |
 | 8 | [08-multibranch-pipeline](08-multibranch-pipeline/) | Multibranch Pipeline | Multibranch Pipeline | `demos/08-multibranch-pipeline/Jenkinsfile` |
+| 9 | [09-docker-ecr](09-docker-ecr/) | Docker build, image test/scan, push to ECR | Pipeline | `demos/09-docker-ecr/Jenkinsfile` |
+| 10 | [10-plugins](10-plugins/) | Plugin Manager, Timestamper, HTML Publisher | Pipeline | `demos/10-plugins/Jenkinsfile` |
 
 ## Conventions
 
-- All builds use **Python 3** on the Jenkins host (`python3` / `/usr/bin/python3`).
-- Tests use **pytest** (installed via `pip3 install -r requirements.txt`).
-- No Docker builds or container agents.
+- Builds use **Python 3** on the Jenkins host (`python3` / `/usr/bin/python3`).
+- Most demos use **pytest** (installed via `pip3 install -r requirements.txt`). Demo 09 uses stdlib `unittest`.
+- Demos 01–08 do not build containers. **Demo 09** requires Docker, AWS CLI, Trivy, and an EC2 IAM role with ECR access.
+- **Demo 10** requires installing the **Timestamper** and **HTML Publisher** plugins (guided in that README).
 - Repository URL for all jobs: `https://github.com/learnwithraghu/jenkins-workshop.git`
 
 ## Full workshop path

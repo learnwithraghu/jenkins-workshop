@@ -8,6 +8,12 @@
 
 This demo builds the same hello-world app as Demo 01. The difference is what you notice **after** the build works.
 
+## Instructor talking points
+
+1. **The build “works” — but the config is invisible in Git** — open the folder on GitHub and show that only `app.py` exists; the shell step lives only in Jenkins.
+2. **UI-only config does not scale** — teammates cannot reproduce the job from the repo, and a fresh Jenkins means retyping every build step.
+3. **This pain point motivates the Jenkinsfile** — frame Demos 03–04 as the path from “config in Jenkins” to “config in the repo.”
+
 ## Jenkins job setup
 
 | Setting | Value |

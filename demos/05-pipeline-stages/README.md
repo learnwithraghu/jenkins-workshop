@@ -7,6 +7,12 @@
 - Running **pytest** in a pipeline stage
 - Stage failure stops the build (try breaking a test to see this)
 
+## Instructor talking points
+
+1. **Stages mirror a real CI flow** — Install dependencies, run tests, then run the app; each stage is visible in the stage view.
+2. **Tests belong in the pipeline** — pytest runs as a first-class stage, not a manual afterthought.
+3. **A failed stage stops later stages** — break a test (or discuss doing so) to show Test turning red and Run being skipped.
+
 ## Jenkins job setup
 
 | Setting | Value |

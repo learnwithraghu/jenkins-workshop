@@ -7,6 +7,12 @@
 - Jenkins sets `BRANCH_NAME` automatically in multibranch builds
 - Scanning the repo for new branches
 
+## Instructor talking points
+
+1. **One Multibranch job → many branch jobs** — Jenkins discovers branches and creates a sub-job per branch from the same Script Path.
+2. **`BRANCH_NAME` is set for you** — show console output (`Running on branch: main`) so students see environment context without hardcoding.
+3. **Scan for new work** — push a feature branch and **Scan Repository Now** to demonstrate automatic discovery and per-branch builds.
+
 ## Jenkins job setup
 
 | Setting | Value |
@@ -56,6 +62,6 @@ Click **Scan Repository Now** on the multibranch job. Jenkins should discover `f
 | `app.py` | Prints the current branch name |
 | `Jenkinsfile` | Simple two-stage pipeline |
 
-## Workshop complete!
+## Next demo
 
-You've finished all demos. Head to the [challenges](../../challenges/README.md) to practice creating Jenkins jobs yourself.
+[09-docker-ecr](../09-docker-ecr/README.md) — build a simple Docker image, test/scan it, and push to Amazon ECR.

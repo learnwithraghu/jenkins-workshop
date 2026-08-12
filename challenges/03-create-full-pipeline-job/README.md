@@ -4,6 +4,12 @@
 
 Create a **Pipeline** job for a project that installs dependencies, runs tests, executes the app, and prints a success or failure message in a `post` block. You do not need to edit any code — the `Jenkinsfile` is already in the repo.
 
+## Instructor talking points
+
+1. **Full pipeline shape** — Install, Test, Run, plus a `post` success message; this pulls together stages and post-build behavior from the demos.
+2. **Console proof** — green stages alone are not enough; look for `Build succeeded!` and the temperature conversion lines.
+3. **Check understanding** — ask them to point at the `post` block in the Jenkinsfile (or solution) and explain when that message runs.
+
 ## Acceptance criteria
 
 - [ ] Jenkins job named `challenge-03-create-full-pipeline-job`
