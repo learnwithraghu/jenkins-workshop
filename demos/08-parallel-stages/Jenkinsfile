@@ -1,12 +1,6 @@
 pipeline {
     agent any
 
-    // After the first manual build, Jenkins polls GitHub every minute.
-    // A push to main that changes this job's SCM checkout will start a new build.
-    triggers {
-        pollSCM('* * * * *')
-    }
-
     stages {
         stage('Install') {
             steps {

@@ -88,6 +88,6 @@ Build page:
 - Search [plugins.jenkins.io](https://plugins.jenkins.io/) for one plugin students care about (Slack, Email Extension, Docker Pipeline) — install only if you have time to demo it.
 - Ask: “Which plugin already powered Demo 07’s test results?” → **JUnit**.
 
-## Workshop complete!
+## Next demo
 
-You've finished all demos. Head to the [challenges](../../challenges/README.md) to practice creating Jenkins jobs yourself.
+[11-poll-scm](../11-poll-scm/README.md) — pollSCM so a push to main triggers a build.

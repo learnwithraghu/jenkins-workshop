@@ -13,9 +13,10 @@ Guided examples that show specific Jenkins features. Work through them in order 
 | 5 | [05-pipeline-stages](05-pipeline-stages/) | Multiple stages, pytest | Pipeline | `demos/05-pipeline-stages/Jenkinsfile` |
 | 6 | [06-parameterized-build](06-parameterized-build/) | Build parameters | Pipeline | `demos/06-parameterized-build/Jenkinsfile` |
 | 7 | [07-post-build-artifacts](07-post-build-artifacts/) | Archive artifacts, JUnit reports | Pipeline | `demos/07-post-build-artifacts/Jenkinsfile` |
-| 8 | [08-parallel-stages](08-parallel-stages/) | Parallel stages + pollSCM | Pipeline | `demos/08-parallel-stages/Jenkinsfile` |
+| 8 | [08-parallel-stages](08-parallel-stages/) | Parallel stages | Pipeline | `demos/08-parallel-stages/Jenkinsfile` |
 | 9 | [09-docker-ecr](09-docker-ecr/) | Docker build, image test/scan, push to ECR | Pipeline | `demos/09-docker-ecr/Jenkinsfile` |
 | 10 | [10-plugins](10-plugins/) | Plugin Manager, Timestamper, HTML Publisher | Pipeline | `demos/10-plugins/Jenkinsfile` |
+| 11 | [11-poll-scm](11-poll-scm/) | pollSCM auto-build on push | Pipeline | `demos/11-poll-scm/Jenkinsfile` |
 
 ## Conventions
 

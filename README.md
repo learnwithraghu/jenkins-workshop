@@ -14,7 +14,7 @@ A hands-on workshop for learning Jenkins on Amazon Linux EC2. Install Jenkins (n
 6. **Use Jenkins plugins** — Plugin Manager, Timestamper, HTML Publisher in a Pipeline
 7. **Practice with challenges** — create Jenkins jobs for pre-built pipelines
 
-Demos 01–08 use **Python 3 on the Jenkins host**. Demo 09 adds Docker build/push to ECR (native Jenkins on EC2 with Docker + IAM role — not Docker-in-Docker). Demo 10 is a plugins UI session plus a short Pipeline.
+Demos 01–08 use **Python 3 on the Jenkins host**. Demo 09 adds Docker build/push to ECR (native Jenkins on EC2 with Docker + IAM role — not Docker-in-Docker). Demo 10 is a plugins UI session plus a short Pipeline. Demo 11 shows **pollSCM** auto-builds after pushes to `main`.
 
 ## Prerequisites
 
@@ -49,9 +49,10 @@ Each demo folder contains small Python code and a README explaining the Jenkins 
 | [05-pipeline-stages](demos/05-pipeline-stages/) | Multiple stages, pytest | Pipeline |
 | [06-parameterized-build](demos/06-parameterized-build/) | Build parameters | Pipeline |
 | [07-post-build-artifacts](demos/07-post-build-artifacts/) | Archive artifacts, JUnit reports | Pipeline |
-| [08-parallel-stages](demos/08-parallel-stages/) | Parallel stages + pollSCM | Pipeline |
+| [08-parallel-stages](demos/08-parallel-stages/) | Parallel stages | Pipeline |
 | [09-docker-ecr](demos/09-docker-ecr/) | Docker build, test/scan, push to ECR | Pipeline |
 | [10-plugins](demos/10-plugins/) | Plugin Manager, Timestamper, HTML Publisher | Pipeline |
+| [11-poll-scm](demos/11-poll-scm/) | pollSCM — auto-build after push to main | Pipeline |
 
 See the [demos index](demos/README.md) for details.
 

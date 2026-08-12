@@ -68,7 +68,7 @@ demos/04-pipeline-declarative/Jenkinsfile
 
 ### Option A: Poll SCM (simple, no webhook setup)
 
-**Recommended for Demo 08:** the Jenkinsfile already declares:
+**Recommended for Demo 11:** the Jenkinsfile already declares:
 
 ```groovy
 triggers {
@@ -76,7 +76,7 @@ triggers {
 }
 ```
 
-That checks GitHub about **once a minute**. After the job’s first **Build Now**, a push to `main` should start a new build within ~60 seconds (cause: “Started by an SCM change”).
+That checks GitHub about **once a minute**. After the job’s first **Build Now**, a push to `main` should start a new build within ~60 seconds (cause: “Started by an SCM change”). See [Demo 11](../demos/11-poll-scm/README.md).
 
 You can also set polling in the UI: job → **Configure** → **Build Triggers** → enable **Poll SCM** with:
 
@@ -112,6 +112,7 @@ Each demo folder has its own README with the exact job type and Script Path. Qui
 | `demos/06-parameterized-build` | Pipeline | `demos/06-parameterized-build/Jenkinsfile` |
 | `demos/07-post-build-artifacts` | Pipeline | `demos/07-post-build-artifacts/Jenkinsfile` |
 | `demos/08-parallel-stages` | Pipeline | `demos/08-parallel-stages/Jenkinsfile` |
+| `demos/11-poll-scm` | Pipeline | `demos/11-poll-scm/Jenkinsfile` |
 
 See the full [workshop guide](04-workshop-guide.md) for the recommended order.
 

@@ -26,9 +26,10 @@ Complete each demo in order. Read the README in each folder for job configuratio
 | 5 | [05-pipeline-stages](../demos/05-pipeline-stages/README.md) | Multiple stages, install deps, run tests | Pipeline | Test stage passes with pytest output |
 | 6 | [06-parameterized-build](../demos/06-parameterized-build/README.md) | Build parameters (`choice`, `string`) | Pipeline | Build with custom name shows personalized greeting |
 | 7 | [07-post-build-artifacts](../demos/07-post-build-artifacts/README.md) | Archive artifacts, JUnit test reports | Pipeline | `report.txt` visible under Build Artifacts |
-| 8 | [08-parallel-stages](../demos/08-parallel-stages/README.md) | Parallel stages (`parallel`) + `pollSCM` | Pipeline | Stage view shows Unit A / Unit B; push to main starts a polled build |
+| 8 | [08-parallel-stages](../demos/08-parallel-stages/README.md) | Parallel stages (`parallel`) | Pipeline | Stage view shows Unit A and Unit B side by side |
 | 9 | [09-docker-ecr](../demos/09-docker-ecr/README.md) | Docker build, image test/scan, push to ECR | Pipeline | Image pushed to ECR; Test Image + Scan stages green |
 | 10 | [10-plugins](../demos/10-plugins/README.md) | Plugin Manager, Timestamper, HTML Publisher | Pipeline | Console has timestamps; build page shows Demo Report |
+| 11 | [11-poll-scm](../demos/11-poll-scm/README.md) | `pollSCM` trigger | Pipeline | Push to main starts a build within ~1 minute |
 
 ### Show your instructor (demos)
 
@@ -65,6 +66,7 @@ For each challenge, be ready to show your job configuration, a green build, and 
 | Demos 5–8 | 45 min | Stages, parameters, artifacts, parallel |
 | Demo 9 | 20–30 min | Docker build, image test/scan, push to ECR |
 | Demo 10 | 15–20 min | Plugins: Plugin Manager + Timestamper + HTML Publisher |
+| Demo 11 | 10–15 min | pollSCM: push to main triggers a build |
 | Challenges | 30–45 min | Create Jenkins jobs for pre-built pipelines |
 | Wrap-up | 15 min | Review, Q&A |
 

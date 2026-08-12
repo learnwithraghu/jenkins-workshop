@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    // After the first manual build, Jenkins polls GitHub every minute.
+    // A push to main starts a new build when SCM changes are detected.
+    triggers {
+        pollSCM('* * * * *')
+    }
+
+    stages {
+        stage('Run') {
+            steps {
+                sh 'cd demos/11-poll-scm && python3 app.py'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Poll SCM demo build succeeded!'
+        }
+        failure {
+            echo 'Build failed — check console output.'
+        }
+    }
+}
