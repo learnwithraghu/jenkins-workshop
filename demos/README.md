@@ -7,11 +7,13 @@ Guided examples that show specific Jenkins features. Work through them in order 
 | # | Demo | Jenkins feature | Job type | Script Path |
 |---|------|-----------------|----------|-------------|
 | 1 | [01-freestyle-hello](01-freestyle-hello/) | Freestyle project, shell build step | Freestyle | _(none)_ |
-| 2 | [02-pipeline-declarative](02-pipeline-declarative/) | Declarative Pipeline, stages, post | Pipeline | `demos/02-pipeline-declarative/Jenkinsfile` |
-| 3 | [03-pipeline-stages](03-pipeline-stages/) | Multiple stages, pytest | Pipeline | `demos/03-pipeline-stages/Jenkinsfile` |
-| 4 | [04-parameterized-build](04-parameterized-build/) | Build parameters | Pipeline | `demos/04-parameterized-build/Jenkinsfile` |
-| 5 | [05-post-build-artifacts](05-post-build-artifacts/) | Archive artifacts, JUnit reports | Pipeline | `demos/05-post-build-artifacts/Jenkinsfile` |
-| 6 | [06-multibranch-pipeline](06-multibranch-pipeline/) | Multibranch Pipeline | Multibranch Pipeline | `demos/06-multibranch-pipeline/Jenkinsfile` |
+| 2 | [02-config-not-in-repo](02-config-not-in-repo/) | Why UI-only config is a problem | Freestyle | _(none)_ |
+| 3 | [03-pipeline-script-in-jenkins](03-pipeline-script-in-jenkins/) | Inline pipeline script in Jenkins UI | Pipeline | _(paste script in UI)_ |
+| 4 | [04-pipeline-declarative](04-pipeline-declarative/) | Jenkinsfile in repo, Pipeline from SCM | Pipeline | `demos/04-pipeline-declarative/Jenkinsfile` |
+| 5 | [05-pipeline-stages](05-pipeline-stages/) | Multiple stages, pytest | Pipeline | `demos/05-pipeline-stages/Jenkinsfile` |
+| 6 | [06-parameterized-build](06-parameterized-build/) | Build parameters | Pipeline | `demos/06-parameterized-build/Jenkinsfile` |
+| 7 | [07-post-build-artifacts](07-post-build-artifacts/) | Archive artifacts, JUnit reports | Pipeline | `demos/07-post-build-artifacts/Jenkinsfile` |
+| 8 | [08-multibranch-pipeline](08-multibranch-pipeline/) | Multibranch Pipeline | Multibranch Pipeline | `demos/08-multibranch-pipeline/Jenkinsfile` |
 
 ## Conventions
 

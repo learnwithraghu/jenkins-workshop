@@ -41,9 +41,9 @@ Python version: 3.x.x
 
 ## Pipeline job: Declarative Pipeline from SCM
 
-This matches [demo 02](../demos/02-pipeline-declarative/README.md) — Jenkins reads the `Jenkinsfile` from the repo.
+This matches [demo 04](../demos/04-pipeline-declarative/README.md) — Jenkins reads the `Jenkinsfile` from the repo.
 
-1. Click **New Item** → name: `demo-02-pipeline-declarative`.
+1. Click **New Item** → name: `demo-04-pipeline-declarative`.
 2. Select **Pipeline** → **OK**.
 3. Scroll to the **Pipeline** section.
 4. Set **Definition** to **Pipeline script from SCM**.
@@ -58,7 +58,7 @@ https://github.com/learnwithraghu/jenkins-workshop.git
 8. Set **Script Path** to:
 
 ```
-demos/02-pipeline-declarative/Jenkinsfile
+demos/04-pipeline-declarative/Jenkinsfile
 ```
 
 9. Click **Save**, then **Build Now**.
@@ -95,25 +95,21 @@ Each demo folder has its own README with the exact job type and Script Path. Qui
 | Demo folder | Job type | Script Path |
 |-------------|----------|-------------|
 | `demos/01-freestyle-hello` | Freestyle | _(none — use shell build step)_ |
-| `demos/02-pipeline-declarative` | Pipeline | `demos/02-pipeline-declarative/Jenkinsfile` |
-| `demos/03-pipeline-stages` | Pipeline | `demos/03-pipeline-stages/Jenkinsfile` |
-| `demos/04-parameterized-build` | Pipeline | `demos/04-parameterized-build/Jenkinsfile` |
-| `demos/05-post-build-artifacts` | Pipeline | `demos/05-post-build-artifacts/Jenkinsfile` |
-| `demos/06-multibranch-pipeline` | Multibranch Pipeline | `demos/06-multibranch-pipeline/Jenkinsfile` |
+| `demos/02-config-not-in-repo` | Freestyle | _(none — use shell build step)_ |
+| `demos/03-pipeline-script-in-jenkins` | Pipeline | _(paste `inline-pipeline.groovy` in UI)_ |
+| `demos/04-pipeline-declarative` | Pipeline | `demos/04-pipeline-declarative/Jenkinsfile` |
+| `demos/05-pipeline-stages` | Pipeline | `demos/05-pipeline-stages/Jenkinsfile` |
+| `demos/06-parameterized-build` | Pipeline | `demos/06-parameterized-build/Jenkinsfile` |
+| `demos/07-post-build-artifacts` | Pipeline | `demos/07-post-build-artifacts/Jenkinsfile` |
+| `demos/08-multibranch-pipeline` | Multibranch Pipeline | `demos/08-multibranch-pipeline/Jenkinsfile` |
 
 See the full [workshop guide](04-workshop-guide.md) for the recommended order.
 
 ## Creating jobs for challenges
 
-Challenges use the same Pipeline from SCM setup. Quick reference:
+Challenges use the same Pipeline from SCM approach as the demos. See each [challenge README](../challenges/README.md) for the goal and acceptance criteria.
 
-| Challenge folder | Script Path |
-|------------------|-------------|
-| `challenges/01-fix-failing-tests` | `challenges/01-fix-failing-tests/Jenkinsfile` |
-| `challenges/02-add-missing-stage` | `challenges/02-add-missing-stage/Jenkinsfile` |
-| `challenges/03-build-pipeline-from-scratch` | `challenges/03-build-pipeline-from-scratch/Jenkinsfile` |
-
-> **Note:** Challenge 03 has no Jenkinsfile in the repo — students must create one. See the [challenge README](../challenges/03-build-pipeline-from-scratch/README.md).
+> **Note:** All Jenkinsfiles are pre-configured in the repo. Students only create and configure Jenkins jobs — no code editing required.
 
 ## Troubleshooting
 

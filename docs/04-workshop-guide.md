@@ -20,11 +20,13 @@ Complete each demo in order. Read the README in each folder for job configuratio
 | # | Demo | Jenkins feature | Job type | Checkpoint |
 |---|------|-----------------|----------|------------|
 | 1 | [01-freestyle-hello](../demos/01-freestyle-hello/README.md) | Freestyle project, shell build step | Freestyle | Console shows "Hello from Jenkins Workshop!" |
-| 2 | [02-pipeline-declarative](../demos/02-pipeline-declarative/README.md) | Declarative Pipeline, stages, post actions | Pipeline | Stage view shows Checkout + Run stages green |
-| 3 | [03-pipeline-stages](../demos/03-pipeline-stages/README.md) | Multiple stages, install deps, run tests | Pipeline | Test stage passes with pytest output |
-| 4 | [04-parameterized-build](../demos/04-parameterized-build/README.md) | Build parameters (`choice`, `string`) | Pipeline | Build with custom name shows personalized greeting |
-| 5 | [05-post-build-artifacts](../demos/05-post-build-artifacts/README.md) | Archive artifacts, JUnit test reports | Pipeline | `report.txt` visible under Build Artifacts |
-| 6 | [06-multibranch-pipeline](../demos/06-multibranch-pipeline/README.md) | Multibranch Pipeline, branch discovery | Multibranch Pipeline | Jenkins discovers and builds the `main` branch |
+| 2 | [02-config-not-in-repo](../demos/02-config-not-in-repo/README.md) | Build config lives only in Jenkins UI | Freestyle | Repo has no build instructions |
+| 3 | [03-pipeline-script-in-jenkins](../demos/03-pipeline-script-in-jenkins/README.md) | Inline pipeline script in Jenkins UI | Pipeline | Stages work, but script still not in repo |
+| 4 | [04-pipeline-declarative](../demos/04-pipeline-declarative/README.md) | Jenkinsfile in repo, Pipeline from SCM | Pipeline | Stage view shows Checkout + Run stages green |
+| 5 | [05-pipeline-stages](../demos/05-pipeline-stages/README.md) | Multiple stages, install deps, run tests | Pipeline | Test stage passes with pytest output |
+| 6 | [06-parameterized-build](../demos/06-parameterized-build/README.md) | Build parameters (`choice`, `string`) | Pipeline | Build with custom name shows personalized greeting |
+| 7 | [07-post-build-artifacts](../demos/07-post-build-artifacts/README.md) | Archive artifacts, JUnit test reports | Pipeline | `report.txt` visible under Build Artifacts |
+| 8 | [08-multibranch-pipeline](../demos/08-multibranch-pipeline/README.md) | Multibranch Pipeline, branch discovery | Multibranch Pipeline | Jenkins discovers and builds the `main` branch |
 
 ### Show your instructor (demos)
 
@@ -38,21 +40,17 @@ For each demo, be ready to show:
 
 ## Part 2: Challenges
 
-After completing the demos, tackle the challenges. Each challenge gives you starter code — you write or fix the pipeline.
+After completing the demos, tackle the challenges. Each challenge asks you to **create a Jenkins job** in the UI. All pipeline scripts are already in the repo — you do not edit code or Jenkinsfiles.
 
-| # | Challenge | Your task | Starter state |
-|---|-----------|-----------|---------------|
-| 1 | [01-fix-failing-tests](../challenges/01-fix-failing-tests/README.md) | Fix broken tests so the pipeline passes | Tests intentionally fail |
-| 2 | [02-add-missing-stage](../challenges/02-add-missing-stage/README.md) | Add the missing Test stage to the pipeline | Incomplete Jenkinsfile |
-| 3 | [03-build-pipeline-from-scratch](../challenges/03-build-pipeline-from-scratch/README.md) | Write a full declarative pipeline from requirements | No Jenkinsfile provided |
+| # | Challenge | Your task |
+|---|-----------|-----------|
+| 1 | [01-create-pipeline-job](../challenges/01-create-pipeline-job/README.md) | Create a Pipeline job with Install and Test stages |
+| 2 | [02-create-staged-pipeline-job](../challenges/02-create-staged-pipeline-job/README.md) | Create a Pipeline job with Install, Test, and Run stages |
+| 3 | [03-create-full-pipeline-job](../challenges/03-create-full-pipeline-job/README.md) | Create a Pipeline job with a post-build success message |
 
 ### Show your instructor (challenges)
 
-For each challenge, be ready to show:
-
-1. Your Jenkinsfile (or the fixes you made).
-2. A green build in Jenkins.
-3. Brief explanation of what you changed and why.
+For each challenge, be ready to show your job configuration, a green build, and a brief explanation of how you set it up.
 
 ---
 
@@ -61,9 +59,9 @@ For each challenge, be ready to show:
 | Segment | Duration | Content |
 |---------|----------|---------|
 | Setup | 45–60 min | EC2 + Jenkins install + GitHub connection |
-| Demos 1–3 | 45 min | Freestyle, basic pipeline, stages + tests |
-| Demos 4–6 | 45 min | Parameters, artifacts, multibranch |
-| Challenges | 60–90 min | Hands-on pipeline exercises |
+| Demos 1–4 | 45 min | Freestyle, why Jenkinsfile, Pipeline from SCM |
+| Demos 5–8 | 45 min | Stages, parameters, artifacts, multibranch |
+| Challenges | 30–45 min | Create Jenkins jobs for pre-built pipelines |
 | Wrap-up | 15 min | Review, Q&A |
 
 ---
@@ -72,8 +70,8 @@ For each challenge, be ready to show:
 
 - **Use absolute Python path with Docker Jenkins:** `/usr/bin/python3` instead of `python3`.
 - **Read the console output first** when a build fails — Jenkins shows the exact error.
-- **One job per demo** keeps things organized. Name jobs to match the folder (e.g. `demo-03-pipeline-stages`).
-- **Challenges are open-ended** — there may be more than one correct solution. Focus on a green build that meets the acceptance criteria.
+- **One job per demo** keeps things organized. Name jobs to match the folder (e.g. `demo-05-pipeline-stages`).
+- **Challenges focus on job creation** — all code is pre-configured. Focus on correct job settings and a green build.
 
 ## Reference
 

@@ -9,8 +9,8 @@ A hands-on workshop for learning Jenkins on Amazon Linux EC2. Install Jenkins (n
 1. **Install Jenkins on Amazon Linux EC2** — step-by-step native install guide
 2. **Run Jenkins via Docker** — install Docker and run Jenkins in a container
 3. **Connect Jenkins to this repo** — clone from public GitHub, no credentials needed
-4. **Learn Jenkins job types** — freestyle, declarative pipeline, stages, parameters, artifacts, multibranch
-5. **Practice with challenges** — fix broken pipelines and build new ones from scratch
+4. **Learn Jenkins job types** — freestyle, why Jenkinsfile matters, declarative pipeline, stages, parameters, artifacts, multibranch
+5. **Practice with challenges** — create Jenkins jobs for pre-built pipelines
 
 All builds use **Python 3 on the Jenkins host**. No Docker-in-Docker or container builds.
 
@@ -41,23 +41,25 @@ Each demo folder contains small Python code and a README explaining the Jenkins 
 | Demo | Jenkins feature | Job type |
 |------|-----------------|----------|
 | [01-freestyle-hello](demos/01-freestyle-hello/) | Freestyle project, shell build step | Freestyle |
-| [02-pipeline-declarative](demos/02-pipeline-declarative/) | Declarative Pipeline, basic stages | Pipeline |
-| [03-pipeline-stages](demos/03-pipeline-stages/) | Multiple stages, pytest | Pipeline |
-| [04-parameterized-build](demos/04-parameterized-build/) | Build parameters | Pipeline |
-| [05-post-build-artifacts](demos/05-post-build-artifacts/) | Archive artifacts, JUnit reports | Pipeline |
-| [06-multibranch-pipeline](demos/06-multibranch-pipeline/) | Multibranch Pipeline | Multibranch Pipeline |
+| [02-config-not-in-repo](demos/02-config-not-in-repo/) | Why UI-only config is a problem | Freestyle |
+| [03-pipeline-script-in-jenkins](demos/03-pipeline-script-in-jenkins/) | Inline pipeline script in Jenkins UI | Pipeline |
+| [04-pipeline-declarative](demos/04-pipeline-declarative/) | Jenkinsfile in repo, Pipeline from SCM | Pipeline |
+| [05-pipeline-stages](demos/05-pipeline-stages/) | Multiple stages, pytest | Pipeline |
+| [06-parameterized-build](demos/06-parameterized-build/) | Build parameters | Pipeline |
+| [07-post-build-artifacts](demos/07-post-build-artifacts/) | Archive artifacts, JUnit reports | Pipeline |
+| [08-multibranch-pipeline](demos/08-multibranch-pipeline/) | Multibranch Pipeline | Multibranch Pipeline |
 
 See the [demos index](demos/README.md) for details.
 
 ## Challenges
 
-Hands-on exercises where you write or fix Jenkins pipelines. Starter code is provided; solutions are in each challenge's `solution/` folder for instructors.
+Hands-on exercises where you create Jenkins jobs in the UI. All pipeline scripts are pre-configured in the repo — no code editing required.
 
 | Challenge | Your task |
 |-----------|-----------|
-| [01-fix-failing-tests](challenges/01-fix-failing-tests/) | Fix broken tests so the pipeline passes |
-| [02-add-missing-stage](challenges/02-add-missing-stage/) | Add a missing Test stage to the pipeline |
-| [03-build-pipeline-from-scratch](challenges/03-build-pipeline-from-scratch/) | Write a full declarative pipeline from requirements |
+| [01-create-pipeline-job](challenges/01-create-pipeline-job/) | Create a Pipeline job with Install and Test stages |
+| [02-create-staged-pipeline-job](challenges/02-create-staged-pipeline-job/) | Create a Pipeline job with Install, Test, and Run stages |
+| [03-create-full-pipeline-job](challenges/03-create-full-pipeline-job/) | Create a Pipeline job with a post-build success message |
 
 See the [challenges index](challenges/README.md) for rules and submission guidelines.
 

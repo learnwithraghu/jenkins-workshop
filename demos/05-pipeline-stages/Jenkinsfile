@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Install') {
+            steps {
+                sh 'cd demos/05-pipeline-stages && pip3 install -r requirements.txt'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'cd demos/05-pipeline-stages && python3 -m pytest test_calculator.py -v'
+            }
+        }
+        stage('Run') {
+            steps {
+                sh '''
+                    cd demos/05-pipeline-stages
+                    python3 -c "from calculator import add; print(f'2 + 3 = {add(2, 3)}')"
+                '''
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'All stages passed!'
+        }
+        failure {
+            echo 'A stage failed — check which stage is red in the stage view.'
+        }
+    }
+}

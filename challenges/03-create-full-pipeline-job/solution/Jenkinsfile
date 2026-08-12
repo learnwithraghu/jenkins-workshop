@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Install') {
+            steps {
+                sh 'cd challenges/03-create-full-pipeline-job && pip3 install -r requirements.txt'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'cd challenges/03-create-full-pipeline-job && python3 -m pytest test_app.py -v'
+            }
+        }
+        stage('Run') {
+            steps {
+                sh 'cd challenges/03-create-full-pipeline-job && python3 app.py'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Build succeeded!'
+        }
+        failure {
+            echo 'Build failed!'
+        }
+    }
+}

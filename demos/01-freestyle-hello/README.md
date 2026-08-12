@@ -41,4 +41,4 @@ Python version: 3.x.x
 
 ## Next demo
 
-[02-pipeline-declarative](../02-pipeline-declarative/README.md) — the same hello-world, but using a Declarative Pipeline Jenkinsfile.
+[02-config-not-in-repo](../02-config-not-in-repo/README.md) — see why storing build config only in Jenkins is a problem.

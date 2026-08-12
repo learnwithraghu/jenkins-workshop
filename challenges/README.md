@@ -1,49 +1,36 @@
 # Challenges
 
-Hands-on exercises where you fix or write Jenkins pipelines. Complete the [demos](../demos/README.md) first — they teach the concepts you'll need here.
+Hands-on exercises where you **create Jenkins jobs**. Complete the [demos](../demos/README.md) first — they teach the concepts you'll need here.
+
+You do **not** need to edit any code or Jenkinsfiles. All pipeline scripts are already in the repo.
 
 ## Rules
 
 1. **Read the README** in each challenge folder for the goal and acceptance criteria.
-2. **Create a Jenkins job** for each challenge (Pipeline type, script from SCM).
-3. **Show your work** — be ready to demonstrate a green build and explain your changes.
+2. **Create a Jenkins job** for each challenge.
+3. **Show your work** — be ready to demonstrate a green build and explain your job setup.
 4. **Hints are optional** — each challenge has a `HINTS.md` file. Try on your own first.
 
 ## Challenges
 
-| # | Challenge | Your task | Starter state |
-|---|-----------|-----------|---------------|
-| 1 | [01-fix-failing-tests](01-fix-failing-tests/) | Fix broken tests so the pipeline passes | Tests intentionally fail |
-| 2 | [02-add-missing-stage](02-add-missing-stage/) | Add a missing Test stage to the pipeline | Incomplete Jenkinsfile |
-| 3 | [03-build-pipeline-from-scratch](03-build-pipeline-from-scratch/) | Write a full declarative pipeline from requirements | No Jenkinsfile |
-
-## Jenkins job quick reference
-
-| Setting | Value |
-|---------|-------|
-| Job type | Pipeline |
-| Definition | Pipeline script from SCM |
-| Repository URL | `https://github.com/learnwithraghu/jenkins-workshop.git` |
-| Branch | `*/main` |
-| Script Path | `challenges/<challenge-folder>/Jenkinsfile` |
+| # | Challenge | Your task |
+|---|-----------|-----------|
+| 1 | [01-create-pipeline-job](01-create-pipeline-job/) | Create a Pipeline job with Install and Test stages |
+| 2 | [02-create-staged-pipeline-job](02-create-staged-pipeline-job/) | Create a Pipeline job with Install, Test, and Run stages |
+| 3 | [03-create-full-pipeline-job](03-create-full-pipeline-job/) | Create a Pipeline job with a post-build success message |
 
 ## Show your instructor
 
-For each challenge:
-
-1. Your Jenkinsfile (or the fixes you made to Python tests).
-2. A green build in Jenkins.
-3. Brief explanation of what you changed and why.
+For each challenge, be ready to show your job configuration, a green build, and a brief explanation of how you set it up.
 
 ## Instructor note
 
-Each challenge has a `solution/` folder with reference answers:
+Each challenge has a `solution/` folder with the reference `Jenkinsfile`:
 
-- [01-fix-failing-tests/solution/](01-fix-failing-tests/solution/)
-- [02-add-missing-stage/solution/](02-add-missing-stage/solution/)
-- [03-build-pipeline-from-scratch/solution/](03-build-pipeline-from-scratch/solution/)
+- [02-create-staged-pipeline-job/solution/](02-create-staged-pipeline-job/solution/)
+- [03-create-full-pipeline-job/solution/](03-create-full-pipeline-job/solution/)
 
-Students should attempt the challenge before looking at solutions.
+All code is pre-configured in the repo. Students only create Jenkins jobs — no code or pipeline editing required.
 
 ## Full workshop path
 

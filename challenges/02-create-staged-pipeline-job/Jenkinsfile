@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Install') {
+            steps {
+                sh 'cd challenges/02-create-staged-pipeline-job && pip3 install -r requirements.txt'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'cd challenges/02-create-staged-pipeline-job && python3 -m pytest test_app.py -v'
+            }
+        }
+        stage('Run') {
+            steps {
+                sh 'cd challenges/02-create-staged-pipeline-job && python3 app.py'
+            }
+        }
+    }
+}
