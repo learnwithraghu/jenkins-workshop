@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Install') {
+            steps {
+                sh 'cd demos/05-post-build-artifacts && pip3 install -r requirements.txt'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'cd demos/05-post-build-artifacts && python3 -m pytest test_generate_report.py -v --junitxml=test-results.xml'
+            }
+        }
+        stage('Generate Report') {
+            steps {
+                sh 'cd demos/05-post-build-artifacts && python3 generate_report.py'
+            }
+        }
+    }
+
+    post {
+        always {
+            junit 'demos/05-post-build-artifacts/test-results.xml'
+            archiveArtifacts artifacts: 'demos/05-post-build-artifacts/report.*', fingerprint: true
+        }
+    }
+}

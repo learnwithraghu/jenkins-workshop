@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'GREETING_NAME', defaultValue: 'World', description: 'Name to greet')
+        choice(name: 'LANGUAGE', choices: ['en', 'es', 'fr'], description: 'Greeting language (display only)')
+    }
+
+    stages {
+        stage('Greet') {
+            steps {
+                echo "Language selected: ${params.LANGUAGE}"
+                sh 'cd demos/04-parameterized-build && GREETING_NAME="${GREETING_NAME}" python3 greet.py'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "Greeted ${params.GREETING_NAME} successfully!"
+        }
+    }
+}

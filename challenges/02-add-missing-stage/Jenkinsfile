@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Install') {
+            steps {
+                sh 'cd challenges/02-add-missing-stage && pip3 install -r requirements.txt'
+            }
+        }
+        // TODO: Add a 'Test' stage here that runs pytest
+        stage('Run') {
+            steps {
+                sh 'cd challenges/02-add-missing-stage && python3 app.py'
+            }
+        }
+    }
+}

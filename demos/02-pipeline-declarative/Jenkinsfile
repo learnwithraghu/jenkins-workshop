@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Using SCM checkout from job config'
+            }
+        }
+        stage('Run') {
+            steps {
+                sh 'cd demos/02-pipeline-declarative && python3 app.py'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Build succeeded!'
+        }
+        failure {
+            echo 'Build failed — check console output.'
+        }
+    }
+}
