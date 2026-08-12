@@ -59,4 +59,4 @@ Report generated: report.txt, report.json
 
 ## Next demo
 
-[08-multibranch-pipeline](../08-multibranch-pipeline/README.md) — discover and build branches automatically.
+[08-parallel-stages](../08-parallel-stages/README.md) — run stages side by side with `parallel`.

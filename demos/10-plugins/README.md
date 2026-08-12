@@ -24,7 +24,7 @@ This is an instructor-led UI session first, then a short Pipeline job that prove
    - **Updates** — security and bugfix patches
    - **Available** — marketplace to install new capability
    - **Installed** — what this controller already has (search for `Pipeline`, `Git`, `JUnit`)
-3. Call out that demos 01–09 already depended on plugins (Pipeline, Git, JUnit, Multibranch, …).
+3. Call out that demos 01–09 already depended on plugins (Pipeline, Git, JUnit, …).
 
 ### 2. Install two plugins (~5–10 min)
 

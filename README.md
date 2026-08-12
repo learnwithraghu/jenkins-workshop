@@ -9,7 +9,7 @@ A hands-on workshop for learning Jenkins on Amazon Linux EC2. Install Jenkins (n
 1. **Install Jenkins on Amazon Linux EC2** — step-by-step native install guide
 2. **Run Jenkins via Docker** — install Docker and run Jenkins in a container
 3. **Connect Jenkins to this repo** — clone from public GitHub, no credentials needed
-4. **Learn Jenkins job types** — freestyle, why Jenkinsfile matters, declarative pipeline, stages, parameters, artifacts, multibranch
+4. **Learn Jenkins job types** — freestyle, why Jenkinsfile matters, declarative pipeline, stages, parameters, artifacts, parallel
 5. **Build and push a container** — simple Docker image, image smoke test + scan, push to Amazon ECR from EC2 (IAM role)
 6. **Use Jenkins plugins** — Plugin Manager, Timestamper, HTML Publisher in a Pipeline
 7. **Practice with challenges** — create Jenkins jobs for pre-built pipelines
@@ -49,7 +49,7 @@ Each demo folder contains small Python code and a README explaining the Jenkins 
 | [05-pipeline-stages](demos/05-pipeline-stages/) | Multiple stages, pytest | Pipeline |
 | [06-parameterized-build](demos/06-parameterized-build/) | Build parameters | Pipeline |
 | [07-post-build-artifacts](demos/07-post-build-artifacts/) | Archive artifacts, JUnit reports | Pipeline |
-| [08-multibranch-pipeline](demos/08-multibranch-pipeline/) | Multibranch Pipeline | Multibranch Pipeline |
+| [08-parallel-stages](demos/08-parallel-stages/) | Parallel stages | Pipeline |
 | [09-docker-ecr](demos/09-docker-ecr/) | Docker build, test/scan, push to ECR | Pipeline |
 | [10-plugins](demos/10-plugins/) | Plugin Manager, Timestamper, HTML Publisher | Pipeline |
 

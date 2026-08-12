@@ -1,0 +1,39 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Install') {
+            steps {
+                sh 'cd demos/08-parallel-stages && pip3 install --break-system-packages -r requirements.txt'
+            }
+        }
+        stage('Parallel Checks') {
+            parallel {
+                stage('Unit A') {
+                    steps {
+                        sh 'cd demos/08-parallel-stages && python3 -m pytest test_left.py -v'
+                    }
+                }
+                stage('Unit B') {
+                    steps {
+                        sh 'cd demos/08-parallel-stages && python3 -m pytest test_right.py -v'
+                    }
+                }
+            }
+        }
+        stage('Summary') {
+            steps {
+                echo 'Both parallel branches finished'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Parallel Checks and Summary passed!'
+        }
+        failure {
+            echo 'A parallel branch or stage failed — check the stage view.'
+        }
+    }
+}

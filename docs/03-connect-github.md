@@ -101,7 +101,7 @@ Each demo folder has its own README with the exact job type and Script Path. Qui
 | `demos/05-pipeline-stages` | Pipeline | `demos/05-pipeline-stages/Jenkinsfile` |
 | `demos/06-parameterized-build` | Pipeline | `demos/06-parameterized-build/Jenkinsfile` |
 | `demos/07-post-build-artifacts` | Pipeline | `demos/07-post-build-artifacts/Jenkinsfile` |
-| `demos/08-multibranch-pipeline` | Multibranch Pipeline | `demos/08-multibranch-pipeline/Jenkinsfile` |
+| `demos/08-parallel-stages` | Pipeline | `demos/08-parallel-stages/Jenkinsfile` |
 
 See the full [workshop guide](04-workshop-guide.md) for the recommended order.
 

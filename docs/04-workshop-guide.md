@@ -26,7 +26,7 @@ Complete each demo in order. Read the README in each folder for job configuratio
 | 5 | [05-pipeline-stages](../demos/05-pipeline-stages/README.md) | Multiple stages, install deps, run tests | Pipeline | Test stage passes with pytest output |
 | 6 | [06-parameterized-build](../demos/06-parameterized-build/README.md) | Build parameters (`choice`, `string`) | Pipeline | Build with custom name shows personalized greeting |
 | 7 | [07-post-build-artifacts](../demos/07-post-build-artifacts/README.md) | Archive artifacts, JUnit test reports | Pipeline | `report.txt` visible under Build Artifacts |
-| 8 | [08-multibranch-pipeline](../demos/08-multibranch-pipeline/README.md) | Multibranch Pipeline, branch discovery | Multibranch Pipeline | Jenkins discovers and builds the `main` branch |
+| 8 | [08-parallel-stages](../demos/08-parallel-stages/README.md) | Parallel stages (`parallel`) | Pipeline | Stage view shows Unit A and Unit B side by side |
 | 9 | [09-docker-ecr](../demos/09-docker-ecr/README.md) | Docker build, image test/scan, push to ECR | Pipeline | Image pushed to ECR; Test Image + Scan stages green |
 | 10 | [10-plugins](../demos/10-plugins/README.md) | Plugin Manager, Timestamper, HTML Publisher | Pipeline | Console has timestamps; build page shows Demo Report |
 
@@ -62,7 +62,7 @@ For each challenge, be ready to show your job configuration, a green build, and 
 |---------|----------|---------|
 | Setup | 45–60 min | EC2 + Jenkins install + GitHub connection |
 | Demos 1–4 | 45 min | Freestyle, why Jenkinsfile, Pipeline from SCM |
-| Demos 5–8 | 45 min | Stages, parameters, artifacts, multibranch |
+| Demos 5–8 | 45 min | Stages, parameters, artifacts, parallel |
 | Demo 9 | 20–30 min | Docker build, image test/scan, push to ECR |
 | Demo 10 | 15–20 min | Plugins: Plugin Manager + Timestamper + HTML Publisher |
 | Challenges | 30–45 min | Create Jenkins jobs for pre-built pipelines |
