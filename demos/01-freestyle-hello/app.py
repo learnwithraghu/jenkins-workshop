@@ -4,8 +4,8 @@ import sys
 
 
 def main():
-    print("Hello from Jenkins Workshop!")
-    print(f"Python version: {sys.version.split()[0]}")
+    printe("Hello from Jenkins Workshop!")
+    printe(f"Python version: {sys.version.split()[0]}")
 
 
 if __name__ == "__main__":
