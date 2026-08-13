@@ -18,13 +18,16 @@ Guided examples that show specific Jenkins features. Work through them in order 
 | 10 | [10-docker-ecr](10-docker-ecr/) | Docker build, image test/scan, push to ECR | Pipeline | `demos/10-docker-ecr/Jenkinsfile` |
 | 11 | [11-plugins](11-plugins/) | Plugin Manager, Timestamper, HTML Publisher | Pipeline | `demos/11-plugins/Jenkinsfile` |
 | 12 | [12-poll-scm](12-poll-scm/) | pollSCM auto-build on push | Pipeline | `demos/12-poll-scm/Jenkinsfile` |
+| 13 | [13-deploy-static-site](13-deploy-static-site/) | Deploy index.html on the Jenkins host | Pipeline | `demos/13-deploy-static-site/Jenkinsfile` |
+| 14 | [14-deploy-s3](14-deploy-s3/) | Deploy index.html to S3 (`S3_BUCKET` parameter) | Pipeline | `demos/14-deploy-s3/Jenkinsfile` |
 
 ## Conventions
 
 - Builds use **Python 3** on the Jenkins host (`python3` / `/usr/bin/python3`).
 - Demos that need **pytest** install with `pip3 install --break-system-packages` (PEP 668 blocks plain system-wide `pip install` on Debian/Ubuntu). Demos 09 and 10 use stdlib `unittest`.
 - Demos 01–09 do not build containers. **Demo 10** requires Docker, AWS CLI, Trivy, and an EC2 IAM role with ECR access.
-- **Demo 07** requires the **JUnit** plugin (`junit` Pipeline step). **Demo 11** requires **Timestamper** and **HTML Publisher** (guided in that README).
+- **Demo 07** requires the **JUnit** plugin (`junit` Pipeline step). **Demo 11** requires **Timestamper** and **HTML Publisher** (guided in that README). Demo 13 also uses HTML Publisher and opens TCP **18081** on the EC2 security group.
+- **Demo 14** needs AWS CLI on the agent, an S3 bucket with static website hosting, and Jenkins credential ID `aws-s3-workshop` (Access Key + Secret). Do not commit keys.
 - Repository URL for all jobs: `https://github.com/learnwithraghu/jenkins-workshop.git`
 
 ## Full workshop path

@@ -30,7 +30,9 @@ Complete each demo in order. Read the README in each folder for job configuratio
 | 9 | [09-pipeline-customize](../demos/09-pipeline-customize/README.md) | Conditional stages (`when`), recover after failed build | Pipeline | Recover skipped on first green build; Recover runs after a forced failure |
 | 10 | [10-docker-ecr](../demos/10-docker-ecr/README.md) | Docker build, image test/scan, push to ECR | Pipeline | Image pushed to ECR; Test Image + Scan stages green |
 | 11 | [11-plugins](../demos/11-plugins/README.md) | Plugin Manager, Timestamper, HTML Publisher | Pipeline | Console has timestamps; build page shows Demo Report |
-| 12 | [12-poll-scm](../demos/12-poll-scm/README.md) | `pollSCM` trigger | Pipeline | Push to main starts a build within ~5 minutes |
+| 12 | [12-poll-scm](../demos/12-poll-scm/README.md) | `pollSCM` trigger | Pipeline | Push to main starts a build within ~10 minutes |
+| 13 | [13-deploy-static-site](../demos/13-deploy-static-site/README.md) | Deploy `index.html` on the Jenkins host | Pipeline | Browse `http://<EC2_IP>:18081/` and Workshop Site on the build |
+| 14 | [14-deploy-s3](../demos/14-deploy-s3/README.md) | Deploy `index.html` to S3 (`S3_BUCKET` parameter) | Pipeline | S3 website URL shows the uploaded page |
 
 ### Show your instructor (demos)
 
@@ -69,6 +71,8 @@ For each challenge, be ready to show your job configuration, a green build, and 
 | Demo 10 | 20–30 min | Docker build, image test/scan, push to ECR |
 | Demo 11 | 15–20 min | Plugins: Plugin Manager + Timestamper + HTML Publisher |
 | Demo 12 | 10–15 min | pollSCM: push to main triggers a build |
+| Demo 13 | 10–15 min | Deploy index.html on the Jenkins host (open port 18081) |
+| Demo 14 | 15 min | Deploy index.html to S3; bucket name via Build with Parameters |
 | Challenges | 30–45 min | Create Jenkins jobs for pre-built pipelines |
 | Wrap-up | 15 min | Review, Q&A |
 

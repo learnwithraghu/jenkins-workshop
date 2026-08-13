@@ -1,0 +1,76 @@
+pipeline {
+    agent any
+
+    parameters {
+        string(name: 'SITE_TITLE', defaultValue: 'Jenkins Workshop Site', description: 'Title shown on index.html')
+        string(name: 'SITE_PORT', defaultValue: '18081', description: 'Host port for python3 http.server')
+    }
+
+    environment {
+        APP_DIR   = 'demos/13-deploy-static-site'
+        SITE_ROOT = '/tmp/jenkins-workshop-site'
+    }
+
+    stages {
+        stage('Generate') {
+            steps {
+                sh '''
+                    cd "$APP_DIR"
+                    SITE_TITLE="${SITE_TITLE}" \
+                    BUILD_NUMBER="${BUILD_NUMBER}" \
+                    JOB_NAME="${JOB_NAME}" \
+                    python3 generate_site.py
+                '''
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo "Serve site/index.html on the Jenkins host at port ${params.SITE_PORT}"
+                sh '''
+                    # Keep the web server alive after this step (Jenkins ProcessTreeKiller)
+                    export JENKINS_NODE_COOKIE=dontKillMe
+                    export BUILD_ID=dontKillMe
+
+                    mkdir -p "$SITE_ROOT"
+                    cp "$APP_DIR/site/index.html" "$SITE_ROOT/index.html"
+
+                    if [ -f "$SITE_ROOT/server.pid" ]; then
+                        kill "$(cat "$SITE_ROOT/server.pid")" >/dev/null 2>&1 || true
+                    fi
+                    pkill -f "python3 -m http.server ${SITE_PORT}" >/dev/null 2>&1 || true
+
+                    cd "$SITE_ROOT"
+                    setsid python3 -m http.server "$SITE_PORT" --bind 0.0.0.0 \
+                        > "$SITE_ROOT/server.log" 2>&1 < /dev/null &
+                    echo $! > "$SITE_ROOT/server.pid"
+
+                    sleep 1
+                    curl -sf "http://127.0.0.1:${SITE_PORT}/" | tee /tmp/demo13-site.out
+                    grep -q "Deployed from Jenkins" /tmp/demo13-site.out
+                '''
+                archiveArtifacts artifacts: 'demos/13-deploy-static-site/site/index.html', fingerprint: true
+                publishHTML(
+                    target: [
+                        allowMissing         : false,
+                        alwaysLinkToLastBuild: true,
+                        keepAll              : true,
+                        reportDir            : 'demos/13-deploy-static-site/site',
+                        reportFiles          : 'index.html',
+                        reportName           : 'Workshop Site',
+                        reportTitles         : 'Deployed index.html'
+                    ]
+                )
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "Open index.html from this build (Workshop Site / Build Artifacts), or browse http://<EC2_PUBLIC_IP>:${params.SITE_PORT}/ after opening the security group port."
+        }
+        failure {
+            echo 'If Publish HTML failed, install the HTML Publisher plugin (demo 11). If curl failed, check that python3 http.server started and the port is free.'
+        }
+    }
+}

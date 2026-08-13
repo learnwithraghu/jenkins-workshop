@@ -12,9 +12,10 @@ A hands-on workshop for learning Jenkins on Amazon Linux EC2. Install Jenkins (n
 4. **Learn Jenkins job types** — freestyle, why Jenkinsfile matters, declarative pipeline, stages, parameters, artifacts, parallel, conditional stages
 5. **Build and push a container** — simple Docker image, image smoke test + scan, push to Amazon ECR from EC2 (IAM role)
 6. **Use Jenkins plugins** — Plugin Manager, Timestamper, HTML Publisher in a Pipeline
-7. **Practice with challenges** — create Jenkins jobs for pre-built pipelines
+7. **Deploy a static site** — serve `index.html` from the Jenkins host, or upload it to S3
+8. **Practice with challenges** — create Jenkins jobs for pre-built pipelines
 
-Demos 01–09 use **Python 3 on the Jenkins host**. Demo 10 adds Docker build/push to ECR (native Jenkins on EC2 with Docker + IAM role — not Docker-in-Docker). Demo 11 is a plugins UI session plus a short Pipeline. Demo 12 shows **pollSCM** auto-builds after pushes to `main`.
+Demos 01–09 use **Python 3 on the Jenkins host**. Demo 10 adds Docker build/push to ECR (native Jenkins on EC2 with Docker + IAM role — not Docker-in-Docker). Demo 11 is a plugins UI session plus a short Pipeline. Demo 12 shows **pollSCM** auto-builds after pushes to `main`. Demo 13 deploys `index.html` on the Jenkins host and serves it on an open port. Demo 14 uploads `index.html` to an S3 bucket (bucket name is a build parameter; AWS keys stay in Jenkins Credentials).
 
 ## Prerequisites
 
@@ -54,6 +55,8 @@ Each demo folder contains small Python code and a README explaining the Jenkins 
 | [10-docker-ecr](demos/10-docker-ecr/) | Docker build, test/scan, push to ECR | Pipeline |
 | [11-plugins](demos/11-plugins/) | Plugin Manager, Timestamper, HTML Publisher | Pipeline |
 | [12-poll-scm](demos/12-poll-scm/) | pollSCM — auto-build after push to main | Pipeline |
+| [13-deploy-static-site](demos/13-deploy-static-site/) | Deploy index.html on the Jenkins host | Pipeline |
+| [14-deploy-s3](demos/14-deploy-s3/) | Deploy index.html to S3 (bucket parameter) | Pipeline |
 
 See the [demos index](demos/README.md) for details.
 

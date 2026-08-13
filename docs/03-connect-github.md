@@ -72,16 +72,16 @@ demos/04-pipeline-declarative/Jenkinsfile
 
 ```groovy
 triggers {
-    pollSCM('H/5 * * * *')
+    pollSCM('H/10 * * * *')
 }
 ```
 
-That checks GitHub about **every 5 minutes**. After the job’s first **Build Now**, a push to `main` should start a new build within ~5 minutes (cause: “Started by an SCM change”). See [Demo 12](../demos/12-poll-scm/README.md).
+That checks GitHub about **every 10 minutes**. After the job’s first **Build Now**, a push to `main` should start a new build within ~10 minutes (cause: “Started by an SCM change”). See [Demo 12](../demos/12-poll-scm/README.md).
 
 You can also set polling in the UI: job → **Configure** → **Build Triggers** → enable **Poll SCM** with:
 
 ```
-H/5 * * * *
+H/10 * * * *
 ```
 
 For more frequent checks in a live demo, use `* * * * *` (about once a minute).
@@ -116,6 +116,8 @@ Each demo folder has its own README with the exact job type and Script Path. Qui
 | `demos/10-docker-ecr` | Pipeline | `demos/10-docker-ecr/Jenkinsfile` |
 | `demos/11-plugins` | Pipeline | `demos/11-plugins/Jenkinsfile` |
 | `demos/12-poll-scm` | Pipeline | `demos/12-poll-scm/Jenkinsfile` |
+| `demos/13-deploy-static-site` | Pipeline | `demos/13-deploy-static-site/Jenkinsfile` |
+| `demos/14-deploy-s3` | Pipeline | `demos/14-deploy-s3/Jenkinsfile` |
 
 See the full [workshop guide](04-workshop-guide.md) for the recommended order.
 

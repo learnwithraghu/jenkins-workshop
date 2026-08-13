@@ -5,3 +5,5 @@ __pycache__/
 test-results.xml
 report.txt
 report.json
+demos/13-deploy-static-site/site/
+demos/14-deploy-s3/site/
