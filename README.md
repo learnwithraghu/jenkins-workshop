@@ -15,7 +15,7 @@ A hands-on workshop for learning Jenkins on Amazon Linux EC2. Install Jenkins (n
 7. **Deploy a static site** — serve `index.html` from the Jenkins host, or upload it to S3
 8. **Practice with challenges** — create Jenkins jobs for pre-built pipelines
 
-Demos 01–09 use **Python 3 on the Jenkins host**. Demo 10 adds Docker build/push to ECR (native Jenkins on EC2 with Docker + IAM role — not Docker-in-Docker). Demo 11 is a plugins UI session plus a short Pipeline. Demo 12 shows **pollSCM** auto-builds after pushes to `main`. Demo 13 deploys `index.html` on the Jenkins host and serves it on an open port. Demo 14 uploads `index.html` to an S3 bucket (bucket name is a build parameter; AWS keys stay in Jenkins Credentials).
+Demos 01–09 use **Python 3 on the Jenkins host**. Demo 10 adds Docker build/push to ECR (native Jenkins on EC2 with Docker + IAM role — not Docker-in-Docker). Demo 11 is a plugins UI session plus a short Pipeline. Demo 12 shows **pollSCM** auto-builds after pushes to `main`. Demo 13 deploys `index.html` on the Jenkins host and serves it on an open port. Demo 14 uploads `index.html` to an S3 bucket in us-east-1 (bucket name and AWS keys are build parameters).
 
 ## Prerequisites
 

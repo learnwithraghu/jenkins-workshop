@@ -2,48 +2,41 @@
 
 ## What this teaches
 
-- A **Deploy** stage that uploads `index.html` to an S3 bucket
-- Passing the **bucket name** with **Build with Parameters** (`S3_BUCKET`)
-- Storing AWS keys in the **Jenkins Credentials** store — never in Git or the Jenkinsfile
+- A **Deploy** stage that uploads `index.html` to an S3 bucket in **us-east-1 (N. Virginia)**
+- Passing **bucket name, Access Key, and Secret Key** with **Build with Parameters**
+- Installing **AWS CLI v2** on the agent if it is missing
 - Opening the site on the S3 static website endpoint
 
 ## Instructor talking points
 
-1. **The bucket is an input, not a secret** — students type `S3_BUCKET` at build time; the same job can deploy to different workshop buckets.
-2. **Keys live in Jenkins Credentials** — show **Manage Jenkins → Credentials**. The Jenkinsfile only has the ID `aws-s3-workshop`. Console output masks the secret.
-3. **This is a real deploy** — after a green build, open the S3 website URL; change `SITE_TITLE` and rebuild to prove the pipeline updated the page.
+1. **Everything for this run is typed at build time** — `S3_BUCKET`, `AWS_ACCESS_KEY_ID`, and `AWS_SECRET_ACCESS_KEY` are parameters. The Jenkinsfile never contains keys.
+2. **`password` hides the secret in the form** — students still must not paste keys into Git or the Jenkinsfile. For a real team, prefer Jenkins Credentials or an EC2 instance role (demo 10).
+3. **Region is Virginia** — `AWS_DEFAULT_REGION=us-east-1`. The workshop bucket must be created in **US East (N. Virginia)**.
 
-## Where to store Access Key and Secret Key
+## Where to enter Access Key and Secret Key
 
-**Do not** put keys in the Jenkinsfile, in this repo, in job environment variables, or in Build Parameters.
+Enter them on **Build with Parameters** for each run. They are **not** stored in this repo.
 
-1. In Jenkins: **Manage Jenkins** → **Credentials**.
-2. Under **Stores scoped to Jenkins**, click **System**.
-3. Click **Global credentials (unrestricted)** → **Add Credentials**.
-4. Fill in:
+1. Create the job and click **Build Now** once so Jenkins discovers the parameters.
+2. Click **Build with Parameters**.
+3. Fill in:
 
-| Field | Value |
-|-------|--------|
-| Kind | **Username with password** |
-| Scope | Global |
-| Username | AWS **Access Key ID** (`AKIA...`) |
-| Password | AWS **Secret Access Key** |
-| ID | `aws-s3-workshop` (must match the Jenkinsfile) |
-| Description | Workshop S3 deploy (IAM user with s3:PutObject) |
+| Parameter | What to enter |
+|-----------|----------------|
+| `S3_BUCKET` | Your bucket name (must exist in **us-east-1**) |
+| `SITE_TITLE` | Optional page title |
+| `AWS_ACCESS_KEY_ID` | IAM Access Key ID (`AKIA...`) |
+| `AWS_SECRET_ACCESS_KEY` | IAM Secret Access Key (password field) |
 
-5. Click **Create**.
+Jenkins masks password parameters in the UI. Do not `echo` them in the pipeline.
 
-The pipeline binds those values only inside the Deploy stage via `withCredentials` (`AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY`). Students should never see the secret in the console.
-
-> **Alternative (no access keys):** if Jenkins runs on EC2 with an instance profile that can `s3:PutObject`, you can skip Jenkins credentials and remove the `withCredentials` block so the AWS CLI uses the role — same pattern as [demo 10](../10-docker-ecr/README.md). Do **not** mix both unless you intend to override the role.
+> **Safer for production:** **Manage Jenkins → Credentials** (Username with password) or an EC2 **instance IAM role**. Parameters are fine for a short workshop; they can still appear in build history on the controller.
 
 ## AWS setup (once)
 
-On the Jenkins agent: **AWS CLI v2** (`aws --version`).
+Create the bucket in **US East (N. Virginia) / us-east-1**.
 
-In AWS:
-
-1. Create an S3 bucket (name is globally unique). Note the **region**.
+1. S3 → Create bucket → region **US East (N. Virginia)**.
 2. Bucket → **Properties** → **Static website hosting** → Enable. Index document: `index.html`.
 3. Allow public website reads (workshop-only). Turn off **Block public access** for this bucket if needed, then add a bucket policy:
 
@@ -62,7 +55,7 @@ In AWS:
 }
 ```
 
-4. The IAM user whose keys you stored needs at least:
+4. The IAM user whose keys you enter needs at least:
 
 ```json
 {
@@ -79,6 +72,8 @@ In AWS:
 
 Replace `YOUR_BUCKET_NAME` with the real bucket.
 
+The **Install AWS CLI** stage installs AWS CLI v2 under `$HOME/.local` if `aws` is not already on the PATH. No `sudo` required.
+
 ## Jenkins job setup
 
 | Setting | Value |
@@ -90,20 +85,18 @@ Replace `YOUR_BUCKET_NAME` with the real bucket.
 | Branch | `*/main` |
 | Script Path | `demos/14-deploy-s3/Jenkinsfile` |
 
-> After the first build, Jenkins discovers the parameters. Use **Build with Parameters** and enter `S3_BUCKET`. The first **Build Now** fails on purpose if the bucket name is empty.
+> After the first build, use **Build with Parameters**. The first **Build Now** fails if `S3_BUCKET` or the keys are empty.
 
 ## How to test
 
-1. Add credential `aws-s3-workshop` (steps above).
-2. Create the job and click **Build Now** once (parameters register; this run may fail if `S3_BUCKET` is blank).
-3. Click **Build with Parameters**.
-4. Set `S3_BUCKET` to your bucket, `AWS_REGION` to the bucket’s region, optionally change `SITE_TITLE`.
-5. **Build**.
-6. Open the website URL from the console (hyphen vs dot depends on region):
+1. Create the job and click **Build Now** once (parameters register).
+2. Click **Build with Parameters**.
+3. Enter `S3_BUCKET`, Access Key, and Secret Key.
+4. **Build**.
+5. Open:
 
 ```
-http://<S3_BUCKET>.s3-website-<AWS_REGION>.amazonaws.com
-http://<S3_BUCKET>.s3-website.<AWS_REGION>.amazonaws.com
+http://<S3_BUCKET>.s3-website-us-east-1.amazonaws.com
 ```
 
 You should see **Deployed to Amazon S3** and your title.
@@ -111,12 +104,14 @@ You should see **Deployed to Amazon S3** and your title.
 ## Expected console highlights
 
 ```
+AWS CLI already installed
+...
 Wrote .../site/index.html
 Uploaded s3://your-bucket/index.html
-Try: http://your-bucket.s3-website-us-east-1.amazonaws.com
+Open: http://your-bucket.s3-website-us-east-1.amazonaws.com
 ```
 
-The Access Key / Secret must **not** appear in the log (Jenkins prints `****`).
+The Secret Key must **not** appear in the log.
 
 ## Files
 
@@ -124,7 +119,7 @@ The Access Key / Secret must **not** appear in the log (Jenkins prints `****`).
 |------|---------|
 | `index.html` | Page template |
 | `generate_site.py` | Writes `site/index.html` with title, bucket, build number |
-| `Jenkinsfile` | Generate → Deploy (`aws s3 cp` + `withCredentials`) |
+| `Jenkinsfile` | Generate → Install AWS CLI → Deploy (`aws s3 cp` to us-east-1) |
 
 ## Try it
 
