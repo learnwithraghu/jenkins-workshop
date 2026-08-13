@@ -14,16 +14,17 @@ Guided examples that show specific Jenkins features. Work through them in order 
 | 6 | [06-parameterized-build](06-parameterized-build/) | Build parameters | Pipeline | `demos/06-parameterized-build/Jenkinsfile` |
 | 7 | [07-post-build-artifacts](07-post-build-artifacts/) | Archive artifacts, JUnit reports | Pipeline | `demos/07-post-build-artifacts/Jenkinsfile` |
 | 8 | [08-parallel-stages](08-parallel-stages/) | Parallel stages | Pipeline | `demos/08-parallel-stages/Jenkinsfile` |
-| 9 | [09-docker-ecr](09-docker-ecr/) | Docker build, image test/scan, push to ECR | Pipeline | `demos/09-docker-ecr/Jenkinsfile` |
-| 10 | [10-plugins](10-plugins/) | Plugin Manager, Timestamper, HTML Publisher | Pipeline | `demos/10-plugins/Jenkinsfile` |
-| 11 | [11-poll-scm](11-poll-scm/) | pollSCM auto-build on push | Pipeline | `demos/11-poll-scm/Jenkinsfile` |
+| 9 | [09-pipeline-customize](09-pipeline-customize/) | Conditional stages, recover after failed build | Pipeline | `demos/09-pipeline-customize/Jenkinsfile` |
+| 10 | [10-docker-ecr](10-docker-ecr/) | Docker build, image test/scan, push to ECR | Pipeline | `demos/10-docker-ecr/Jenkinsfile` |
+| 11 | [11-plugins](11-plugins/) | Plugin Manager, Timestamper, HTML Publisher | Pipeline | `demos/11-plugins/Jenkinsfile` |
+| 12 | [12-poll-scm](12-poll-scm/) | pollSCM auto-build on push | Pipeline | `demos/12-poll-scm/Jenkinsfile` |
 
 ## Conventions
 
 - Builds use **Python 3** on the Jenkins host (`python3` / `/usr/bin/python3`).
-- Demos that need **pytest** install with `pip3 install --break-system-packages` (PEP 668 blocks plain system-wide `pip install` on Debian/Ubuntu). Demo 09 uses stdlib `unittest`.
-- Demos 01–08 do not build containers. **Demo 09** requires Docker, AWS CLI, Trivy, and an EC2 IAM role with ECR access.
-- **Demo 07** requires the **JUnit** plugin (`junit` Pipeline step). **Demo 10** requires **Timestamper** and **HTML Publisher** (guided in that README).
+- Demos that need **pytest** install with `pip3 install --break-system-packages` (PEP 668 blocks plain system-wide `pip install` on Debian/Ubuntu). Demos 09 and 10 use stdlib `unittest`.
+- Demos 01–09 do not build containers. **Demo 10** requires Docker, AWS CLI, Trivy, and an EC2 IAM role with ECR access.
+- **Demo 07** requires the **JUnit** plugin (`junit` Pipeline step). **Demo 11** requires **Timestamper** and **HTML Publisher** (guided in that README).
 - Repository URL for all jobs: `https://github.com/learnwithraghu/jenkins-workshop.git`
 
 ## Full workshop path

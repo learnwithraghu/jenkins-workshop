@@ -1,4 +1,4 @@
-# Demo 10: Jenkins Plugins
+# Demo 11: Jenkins Plugins
 
 ## What this teaches
 
@@ -24,7 +24,7 @@ This is an instructor-led UI session first, then a short Pipeline job that prove
    - **Updates** — security and bugfix patches
    - **Available** — marketplace to install new capability
    - **Installed** — what this controller already has (search for `Pipeline`, `Git`, `JUnit`)
-3. Call out that demos 01–09 already depended on plugins (Pipeline, Git, JUnit, …).
+3. Call out that demos 01–10 already depended on plugins (Pipeline, Git, JUnit, …).
 
 ### 2. Install two plugins (~5–10 min)
 
@@ -48,12 +48,12 @@ Create the Pipeline job below, build once, then show:
 
 | Setting | Value |
 |---------|-------|
-| Job name | `demo-10-plugins` |
+| Job name | `demo-11-plugins` |
 | Job type | Pipeline |
 | Definition | Pipeline script from SCM |
 | Repository URL | `https://github.com/learnwithraghu/jenkins-workshop.git` |
 | Branch | `*/main` |
-| Script Path | `demos/10-plugins/Jenkinsfile` |
+| Script Path | `demos/11-plugins/Jenkinsfile` |
 
 ## Expected results
 
@@ -73,7 +73,7 @@ Build page:
 
 1. Confirm **HTML Publisher** is installed (**Manage Jenkins → Plugins → Installed**).
 2. Restart Jenkins if the plugin was just installed and the step is still unknown.
-3. Confirm `report.html` was created under `demos/10-plugins` in the workspace.
+3. Confirm `report.html` was created under `demos/11-plugins` in the workspace.
 
 ## Files
 
@@ -90,4 +90,4 @@ Build page:
 
 ## Next demo
 
-[11-poll-scm](../11-poll-scm/README.md) — pollSCM so a push to main triggers a build.
+[12-poll-scm](../12-poll-scm/README.md) — pollSCM so a push to main triggers a build.

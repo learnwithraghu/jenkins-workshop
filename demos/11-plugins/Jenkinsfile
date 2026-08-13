@@ -10,7 +10,7 @@ pipeline {
         stage('Generate Report') {
             steps {
                 echo 'Create a simple HTML file the HTML Publisher plugin will serve'
-                sh 'cd demos/10-plugins && python3 generate_report.py'
+                sh 'cd demos/11-plugins && python3 generate_report.py'
             }
         }
 
@@ -22,7 +22,7 @@ pipeline {
                         allowMissing         : false,
                         alwaysLinkToLastBuild: true,
                         keepAll              : true,
-                        reportDir            : 'demos/10-plugins',
+                        reportDir            : 'demos/11-plugins',
                         reportFiles          : 'report.html',
                         reportName           : 'Demo Report',
                         reportTitles         : 'Plugins demo'

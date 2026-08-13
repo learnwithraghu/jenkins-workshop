@@ -56,4 +56,4 @@ Break a test in `test_left.py` (or `test_right.py`), push, and rebuild. Notice o
 
 ## Next demo
 
-[09-docker-ecr](../09-docker-ecr/README.md) — Docker build, image test/scan, push to ECR.
+[09-pipeline-customize](../09-pipeline-customize/README.md) — skip stages with `when`, recover after a failed build.

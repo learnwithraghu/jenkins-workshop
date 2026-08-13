@@ -12,7 +12,7 @@ pipeline {
         ECR_REGISTRY   = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
         IMAGE_URI      = "${ECR_REGISTRY}/${ECR_REPO_NAME}:${IMAGE_TAG}"
         LOCAL_IMAGE    = "jenkins-workshop-demo:${IMAGE_TAG}"
-        APP_DIR        = 'demos/09-docker-ecr'
+        APP_DIR        = 'demos/10-docker-ecr'
     }
 
     stages {
@@ -37,13 +37,13 @@ pipeline {
             steps {
                 echo 'Smoke-test the image: start container, hit /, then stop'
                 sh '''
-                    docker rm -f demo09-smoke >/dev/null 2>&1 || true
-                    docker run -d --name demo09-smoke -p 18080:8080 ${LOCAL_IMAGE}
+                    docker rm -f demo10-smoke >/dev/null 2>&1 || true
+                    docker run -d --name demo10-smoke -p 18080:8080 ${LOCAL_IMAGE}
                     # Wait briefly for the HTTP server to listen
                     sleep 2
-                    curl -sf http://127.0.0.1:18080/ | tee /tmp/demo09-smoke.out
-                    grep -q "Hello from Jenkins Docker demo" /tmp/demo09-smoke.out
-                    docker rm -f demo09-smoke
+                    curl -sf http://127.0.0.1:18080/ | tee /tmp/demo10-smoke.out
+                    grep -q "Hello from Jenkins Docker demo" /tmp/demo10-smoke.out
+                    docker rm -f demo10-smoke
                 '''
             }
         }
@@ -111,7 +111,7 @@ pipeline {
         always {
             echo 'Clean up local smoke container and dangling tags if present'
             sh '''
-                docker rm -f demo09-smoke >/dev/null 2>&1 || true
+                docker rm -f demo10-smoke >/dev/null 2>&1 || true
             '''
         }
         success {

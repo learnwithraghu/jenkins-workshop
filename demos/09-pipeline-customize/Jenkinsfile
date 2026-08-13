@@ -1,0 +1,79 @@
+pipeline {
+    agent any
+
+    options {
+        timeout(time: 10, unit: 'MINUTES')
+    }
+
+    parameters {
+        string(name: 'APP_NAME', defaultValue: 'workshop-app', description: 'App name printed by app.py')
+        choice(name: 'ENVIRONMENT', choices: ['dev', 'staging', 'prod'], description: 'Target environment')
+        choice(name: 'LOG_LEVEL', choices: ['INFO', 'DEBUG'], description: 'Log verbosity for app.py')
+        booleanParam(name: 'RUN_TESTS', defaultValue: true, description: 'Run the Test stage')
+        booleanParam(name: 'FORCE_FAIL', defaultValue: false, description: 'Fail the Run stage on purpose')
+        string(name: 'RELEASE_NOTES', defaultValue: 'First workshop release', description: 'Notes printed on the status card')
+    }
+
+    environment {
+        APP_DIR = 'demos/09-pipeline-customize'
+    }
+
+    stages {
+        stage('Recover') {
+            when {
+                expression {
+                    return currentBuild.previousBuild != null &&
+                           currentBuild.previousBuild.result == 'FAILURE'
+                }
+            }
+            steps {
+                echo 'Previous build failed — running extra checks'
+                sh 'cd "$APP_DIR" && python3 app.py recover'
+            }
+        }
+
+        stage('Test') {
+            when {
+                expression { return params.RUN_TESTS }
+            }
+            steps {
+                sh 'cd "$APP_DIR" && python3 -m unittest -v'
+            }
+        }
+
+        stage('Run') {
+            steps {
+                sh '''
+                    cd "$APP_DIR"
+                    APP_NAME="${APP_NAME}" \
+                    ENVIRONMENT="${ENVIRONMENT}" \
+                    LOG_LEVEL="${LOG_LEVEL}" \
+                    RELEASE_NOTES="${RELEASE_NOTES}" \
+                    FORCE_FAIL="${FORCE_FAIL}" \
+                    python3 app.py status
+                '''
+            }
+        }
+
+        stage('Deploy') {
+            when {
+                expression { return params.ENVIRONMENT == 'prod' }
+            }
+            steps {
+                echo "Fake deploy of ${params.APP_NAME} to prod"
+            }
+        }
+    }
+
+    post {
+        always {
+            echo "Previous build result: ${currentBuild.previousBuild?.result ?: 'none'}"
+        }
+        failure {
+            echo 'This build failed. The next build will run the Recover stage.'
+        }
+        success {
+            echo 'Build succeeded. Recover runs only when the previous build was FAILURE.'
+        }
+    }
+}

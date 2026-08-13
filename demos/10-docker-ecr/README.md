@@ -1,4 +1,4 @@
-# Demo 09: Build Docker Image and Push to ECR
+# Demo 10: Build Docker Image and Push to ECR
 
 ## What this teaches
 
@@ -25,18 +25,18 @@ This demo assumes Jenkins runs **natively on EC2** (not the Docker Jenkins insta
 | IAM instance role | Permissions to auth and push to your ECR repo (e.g. `ecr:GetAuthorizationToken`, `ecr:BatchCheckLayerAvailability`, `ecr:CompleteLayerUpload`, `ecr:InitiateLayerUpload`, `ecr:PutImage`, `ecr:UploadLayerPart`, plus scan APIs if you use that stage) |
 | ECR repository | Already created — fill its name into the Jenkinsfile |
 
-> **Fill-in values:** edit `demos/09-docker-ecr/Jenkinsfile` and replace `REPLACE_WITH_AWS_REGION`, `REPLACE_WITH_AWS_ACCOUNT_ID`, and `REPLACE_WITH_ECR_REPO_NAME` before building — or override them with Jenkins job parameters / environment if you prefer not to commit account IDs.
+> **Fill-in values:** edit `demos/10-docker-ecr/Jenkinsfile` and replace `REPLACE_WITH_AWS_REGION`, `REPLACE_WITH_AWS_ACCOUNT_ID`, and `REPLACE_WITH_ECR_REPO_NAME` before building — or override them with Jenkins job parameters / environment if you prefer not to commit account IDs.
 
 ## Jenkins job setup
 
 | Setting | Value |
 |---------|-------|
-| Job name | `demo-09-docker-ecr` |
+| Job name | `demo-10-docker-ecr` |
 | Job type | Pipeline |
 | Definition | Pipeline script from SCM |
 | Repository URL | `https://github.com/learnwithraghu/jenkins-workshop.git` |
 | Branch | `*/main` |
-| Script Path | `demos/09-docker-ecr/Jenkinsfile` |
+| Script Path | `demos/10-docker-ecr/Jenkinsfile` |
 
 ## Pipeline stages (what each one does)
 
@@ -84,4 +84,4 @@ Image pushed: <ACCOUNT>.dkr.ecr.<REGION>.amazonaws.com/<REPO>:<BUILD_NUMBER>
 
 ## Next
 
-You've finished the Docker/ECR demo. Next: [10-plugins](../10-plugins/README.md) — Plugin Manager and using plugins in a Pipeline.
+You've finished the Docker/ECR demo. Next: [11-plugins](../11-plugins/README.md) — Plugin Manager and using plugins in a Pipeline.

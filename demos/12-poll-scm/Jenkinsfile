@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Run') {
             steps {
-                sh 'cd demos/11-poll-scm && python3 app.py'
+                sh 'cd demos/12-poll-scm && python3 app.py'
             }
         }
     }

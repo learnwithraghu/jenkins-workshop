@@ -1,4 +1,4 @@
-# Demo 11: Poll SCM
+# Demo 12: Poll SCM
 
 ## What this teaches
 
@@ -17,12 +17,12 @@
 
 | Setting | Value |
 |---------|-------|
-| Job name | `demo-11-poll-scm` |
+| Job name | `demo-12-poll-scm` |
 | Job type | Pipeline |
 | Definition | Pipeline script from SCM |
 | Repository URL | `https://github.com/learnwithraghu/jenkins-workshop.git` |
 | Branch | `*/main` |
-| Script Path | `demos/11-poll-scm/Jenkinsfile` |
+| Script Path | `demos/12-poll-scm/Jenkinsfile` |
 
 > **Important:** Click **Build Now** once after creating the job so Jenkins registers the trigger.
 
