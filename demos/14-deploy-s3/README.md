@@ -13,25 +13,6 @@
 2. **`password` hides the secret in the form** — students still must not paste keys into Git or the Jenkinsfile. For a real team, prefer Jenkins Credentials or an EC2 instance role (demo 10).
 3. **Region is Virginia** — `AWS_DEFAULT_REGION=us-east-1`. The workshop bucket must be created in **US East (N. Virginia)**.
 
-## Where to enter Access Key and Secret Key
-
-Enter them on **Build with Parameters** for each run. They are **not** stored in this repo.
-
-1. Create the job and click **Build Now** once so Jenkins discovers the parameters.
-2. Click **Build with Parameters**.
-3. Fill in:
-
-| Parameter | What to enter |
-|-----------|----------------|
-| `S3_BUCKET` | Your bucket name (must exist in **us-east-1**) |
-| `SITE_TITLE` | Optional page title |
-| `AWS_ACCESS_KEY_ID` | IAM Access Key ID (`AKIA...`) |
-| `AWS_SECRET_ACCESS_KEY` | IAM Secret Access Key (password field) |
-
-Jenkins masks password parameters in the UI. Do not `echo` them in the pipeline.
-
-> **Safer for production:** **Manage Jenkins → Credentials** (Username with password) or an EC2 **instance IAM role**. Parameters are fine for a short workshop; they can still appear in build history on the controller.
-
 ## AWS setup (once)
 
 Create the bucket in **US East (N. Virginia) / us-east-1**.
@@ -76,6 +57,8 @@ The **Install AWS CLI** stage installs AWS CLI v2 under `$HOME/.local` if `aws` 
 
 ## Jenkins job setup
 
+Create the job first. You enter keys on the next step, after Jenkins has loaded the parameters.
+
 | Setting | Value |
 |---------|-------|
 | Job name | `demo-14-deploy-s3` |
@@ -85,21 +68,40 @@ The **Install AWS CLI** stage installs AWS CLI v2 under `$HOME/.local` if `aws` 
 | Branch | `*/main` |
 | Script Path | `demos/14-deploy-s3/Jenkinsfile` |
 
-> After the first build, use **Build with Parameters**. The first **Build Now** fails if `S3_BUCKET` or the keys are empty.
+1. **New Item** → name `demo-14-deploy-s3` → **Pipeline**.
+2. Set **Pipeline script from SCM** with the values above.
+3. **Save**.
+4. Click **Build Now** once so Jenkins reads the Jenkinsfile and registers the parameters. This first run is expected to fail if `S3_BUCKET` and the keys are still empty.
+
+## Where to enter Access Key and Secret Key
+
+After the job exists and the first **Build Now** has finished, use **Build with Parameters**. The keys are **not** stored in this repo.
+
+1. Open `demo-14-deploy-s3`.
+2. Click **Build with Parameters**.
+3. Fill in:
+
+| Parameter | What to enter |
+|-----------|----------------|
+| `S3_BUCKET` | Your bucket name (must exist in **us-east-1**) |
+| `AWS_ACCESS_KEY_ID` | IAM Access Key ID (`AKIA...`) |
+| `AWS_SECRET_ACCESS_KEY` | IAM Secret Access Key (password field) |
+
+4. Click **Build**.
+
+Jenkins masks password parameters in the UI. Do not `echo` them in the pipeline.
+
+> **Safer for production:** **Manage Jenkins → Credentials** (Username with password) or an EC2 **instance IAM role**. Parameters are fine for a short workshop; they can still appear in build history on the controller.
 
 ## How to test
 
-1. Create the job and click **Build Now** once (parameters register).
-2. Click **Build with Parameters**.
-3. Enter `S3_BUCKET`, Access Key, and Secret Key.
-4. **Build**.
-5. Open:
+After a green Deploy stage, open:
 
 ```
 http://<S3_BUCKET>.s3-website-us-east-1.amazonaws.com
 ```
 
-You should see **Deployed to Amazon S3** and your title.
+You should see **Deployed to Amazon S3** and **Jenkins Workshop Site**.
 
 ## Expected console highlights
 
@@ -118,12 +120,12 @@ The Secret Key must **not** appear in the log.
 | File | Purpose |
 |------|---------|
 | `index.html` | Page template |
-| `generate_site.py` | Writes `site/index.html` with title, bucket, build number |
+| `generate_site.py` | Writes `site/index.html` with bucket, build number, and time |
 | `Jenkinsfile` | Generate → Install AWS CLI → Deploy (`aws s3 cp` to us-east-1) |
 
 ## Try it
 
-Rebuild with a different `SITE_TITLE` and refresh the S3 URL. The heading should change.
+Rebuild and refresh the S3 URL. The **Build number** on the page should match the Jenkins build.
 
 ## Next
 

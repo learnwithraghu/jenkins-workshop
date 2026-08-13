@@ -13,7 +13,6 @@ OUTPUT = SITE_DIR / "index.html"
 def main():
     html = TEMPLATE.read_text(encoding="utf-8")
     replacements = {
-        "{{SITE_TITLE}}": os.environ.get("SITE_TITLE", "Jenkins Workshop Site"),
         "{{S3_BUCKET}}": os.environ.get("S3_BUCKET", "(not set)"),
         "{{BUILD_NUMBER}}": os.environ.get("BUILD_NUMBER", "local"),
         "{{JOB_NAME}}": os.environ.get("JOB_NAME", "demo-14-deploy-s3"),

@@ -3,7 +3,6 @@ pipeline {
 
     parameters {
         string(name: 'S3_BUCKET', defaultValue: '', description: 'Existing S3 bucket name in us-east-1 (website hosting enabled)')
-        string(name: 'SITE_TITLE', defaultValue: 'Jenkins Workshop Site', description: 'Title shown on index.html')
         password(name: 'AWS_ACCESS_KEY_ID', defaultValue: '', description: 'AWS Access Key ID (entered at build time)')
         password(name: 'AWS_SECRET_ACCESS_KEY', defaultValue: '', description: 'AWS Secret Access Key (entered at build time)')
     }
@@ -27,7 +26,6 @@ pipeline {
                 }
                 sh '''
                     cd "$APP_DIR"
-                    SITE_TITLE="${SITE_TITLE}" \
                     S3_BUCKET="${S3_BUCKET}" \
                     BUILD_NUMBER="${BUILD_NUMBER}" \
                     JOB_NAME="${JOB_NAME}" \
